@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CRUDinMVC.Models.MixModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MixName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CFx)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SVO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConductiveCarbon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Binder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ratio)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MixName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CFx)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SVO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConductiveCarbon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Binder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ratio)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { onclick =  @ViewBag.Message  }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })
+        </td>
+    </tr>
+}
+
+</table>
