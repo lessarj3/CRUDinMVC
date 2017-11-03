@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CRUDinMVC.Models
 {
-    public class MixModel
+    public class Mix
     {
         public int Id { get; set; }
         public string MixName { get; set; }

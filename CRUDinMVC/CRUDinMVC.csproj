@@ -143,7 +143,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Mix\Create.cshtml" />
-    <Content Include="Views\Mix\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -151,8 +150,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IMixRepository.cs" />
     <Compile Include="Models\Mix.cs" />
-    <Compile Include="Models\MixDBHandle.cs" />
+    <Compile Include="Models\MixRepositoryMongo.cs" />
+    <Compile Include="Models\MixRepositorySQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,8 +164,9 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Mix\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Mix\Index.cshtml" />
+    <Content Include="Views\Mix\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

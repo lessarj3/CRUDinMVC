@@ -9,13 +9,23 @@ namespace CRUDinMVC.Controllers
 {
     public class MixController : Controller
     {
-        // 1. *************RETRIEVE ALL MIX DETAILS ******************
-        // GET: Mix
+        private readonly IMixRepository _mixRepository;
+
+        public MixController()
+        {
+            // This line of code for using SQL
+            _mixRepository = new MixRepositorySQL();
+
+            // This line of code is for using MongoDB
+            //_mixRepository = new MixRepositoryMongo();
+
+        }
+        //*************RETRIEVE ALL MIXES******************
+        // GET
         public ActionResult Index()
         {
-            MixDBHandle dbhandle = new MixDBHandle();
             ModelState.Clear();
-            return View(dbhandle.GetMix());
+            return View(_mixRepository.GetMixes());
         }
 
         // 2. *************ADD NEW MIX ******************
@@ -25,49 +35,55 @@ namespace CRUDinMVC.Controllers
             return View();
         }
 
+        // 3. ************* View MIX DETAILS ******************
+        // GET: Mix/Details/5
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            return View(_mixRepository.GetMixes().Where(m => m.Id == id).FirstOrDefault());
+        }
+
         // POST: Mix/Create
         [HttpPost]
-        public ActionResult Create(MixModel smodel)
+        public ActionResult Create(Mix mix)
         {
             try
             {
                 if (ModelState.IsValid)
-                {
-                    MixDBHandle sdb = new MixDBHandle();
-                    if (sdb.AddMix(smodel))
-                    {
-                        ViewBag.Message = "Mix Details Added Successfully";
-                        ModelState.Clear();
-                    }
+                {                   
+                    _mixRepository.AddMix(mix);
                 }
-                return View();
+                TempData["Created"] = "Mix added successfully!";
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View(); ; ; ;
+                TempData["Created"] = "Error! Somethings amiss!";
+                return View(); 
             }
         }
 
         // 3. ************* EDIT MIX DETAILS ******************
         // GET: Mix/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            MixDBHandle sdb = new MixDBHandle();
-            return View(sdb.GetMix().Find(smodel => smodel.Id == id));
+            return View(_mixRepository.GetMixes().Where(m=>m.Id == id).FirstOrDefault());
         }
 
         // POST: Mix/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, MixModel smodel)
+        public ActionResult Edit(int id, Mix mix)
         {
             try
             {
-                MixDBHandle sdb = new MixDBHandle();
-                sdb.UpdateDetails(smodel);
+                _mixRepository.UpdateDetails(mix);
+                TempData["Edited"] = "Mix was changed!";
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["Edited"] = "Update failed...";
                 return View();
             }
         }
@@ -76,17 +92,16 @@ namespace CRUDinMVC.Controllers
         // GET: Mix/Delete/5
         public ActionResult Delete(int id)
         {
+            int mix = id;
             try
             {
-                MixDBHandle sdb = new MixDBHandle();
-                if (sdb.DeleteMix(id))
-                {
-                    ViewBag.AlertMsg = "Mix Deleted Successfully";
-                }
+                _mixRepository.DeleteMix(id);
+                TempData["Deleted"] = "Mix was deleted!";
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["Deleted"] = "Error! Somethings amiss!";
                 return View();
             }
         }

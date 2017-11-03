@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace CRUDinMVC.Models
 {
-    public class MixDBHandle
+    public class MixRepositorySQL : IMixRepository
     {
         private SqlConnection con;
         private void connection()
@@ -18,34 +18,39 @@ namespace CRUDinMVC.Models
         }
 
         // **************** ADD NEW MIX *********************
-        public bool AddMix(MixModel smodel)
+        public void AddMix(Mix mix)
         {
             connection();
             SqlCommand cmd = new SqlCommand("AddNewMix", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@MixName", smodel.MixName);
-            cmd.Parameters.AddWithValue("@CFx", smodel.CFx);
-            cmd.Parameters.AddWithValue("@SVO", smodel.SVO);
-            cmd.Parameters.AddWithValue("@ConductiveCarbon", smodel.ConductiveCarbon);
-            cmd.Parameters.AddWithValue("@Binder", smodel.Binder);
-            cmd.Parameters.AddWithValue("@Ratio", smodel.Ratio);
+            cmd.Parameters.AddWithValue("@MixName", mix.MixName);
+            cmd.Parameters.AddWithValue("@CFx", mix.CFx);
+            cmd.Parameters.AddWithValue("@SVO", mix.SVO);
+            cmd.Parameters.AddWithValue("@ConductiveCarbon", mix.ConductiveCarbon);
+            cmd.Parameters.AddWithValue("@Binder", mix.Binder);
+            cmd.Parameters.AddWithValue("@Ratio", mix.Ratio);
 
-            con.Open();
-            int i = cmd.ExecuteNonQuery();
-            con.Close();
-
-            if (i >= 1)
-                return true;
-            else
-                return false;
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Adding Mix", ex);
+            }
+            finally
+            {
+                con.Close();
+            }      
         }
 
         // ********** VIEW MIX DETAILS ********************
-        public List<MixModel> GetMix()
+        public IEnumerable<Mix> GetMixes()
         {
             connection();
-            List<MixModel> mixlist = new List<MixModel>();
+            List<Mix> mixlist = new List<Mix>();
 
             SqlCommand cmd = new SqlCommand("GetMixDetails", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -59,7 +64,7 @@ namespace CRUDinMVC.Models
             foreach (DataRow dr in dt.Rows)
             {
                 mixlist.Add(
-                    new MixModel
+                    new Mix
                     {
                         Id = Convert.ToInt32(dr["Id"]),
                         MixName = Convert.ToString(dr["MixName"]),
@@ -74,48 +79,64 @@ namespace CRUDinMVC.Models
         }
 
         // ***************** UPDATE MIX DETAILS *********************
-        public bool UpdateDetails(MixModel smodel)
+        public void UpdateDetails(Mix mix)
         {
             connection();
             SqlCommand cmd = new SqlCommand("UpdateMixDetails", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@MixId", smodel.Id);
-            cmd.Parameters.AddWithValue("@MixName", smodel.MixName);
-            cmd.Parameters.AddWithValue("@CFx", smodel.CFx);
-            cmd.Parameters.AddWithValue("@SVO", smodel.SVO);
-            cmd.Parameters.AddWithValue("@ConductiveCarbon", smodel.ConductiveCarbon);
-            cmd.Parameters.AddWithValue("@Binder", smodel.Binder);
-            cmd.Parameters.AddWithValue("@Ratio", smodel.Ratio);
+            cmd.Parameters.AddWithValue("@MixId", mix.Id);
+            cmd.Parameters.AddWithValue("@MixName", mix.MixName);
+            cmd.Parameters.AddWithValue("@CFx", mix.CFx);
+            cmd.Parameters.AddWithValue("@SVO", mix.SVO);
+            cmd.Parameters.AddWithValue("@ConductiveCarbon", mix.ConductiveCarbon);
+            cmd.Parameters.AddWithValue("@Binder", mix.Binder);
+            cmd.Parameters.AddWithValue("@Ratio", mix.Ratio);
 
-            con.Open();
-            int i = cmd.ExecuteNonQuery();
-            con.Close();
-
-            if (i >= 1)
-                return true;
-            else
-                return false;
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception ("Error updating mix", ex);
+            }
+            finally
+            {
+                con.Close();
+            }                   
         }
 
         // ********************** DELETE MIX DETAILS *******************
-        public bool DeleteMix(int id)
+        public void DeleteMix(int id)
         {
             connection();
             SqlCommand cmd = new SqlCommand("DeleteMix", con);
             cmd.CommandType = CommandType.StoredProcedure;
-
             cmd.Parameters.AddWithValue("@MixId", id);
-
-            con.Open();
-            int i = cmd.ExecuteNonQuery();
+            
             con.Close();
 
-            if (i >= 1)
-                return true;
-            else
-                return false;
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Deleting mix", ex); ;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
+
+    }
+
+    public class MyConnectionException : Exception
+    {
 
     }
 }
