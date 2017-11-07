@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CRUDinMVC.Models;
+//using CRUDinMVC.Models;
+using CathodeRepoCommon.Models;
 
 namespace CRUDinMVC.Controllers
 {

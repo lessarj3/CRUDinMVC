@@ -1,0 +1,60 @@
+﻿@model CRUDinMVC.Models.Mix
+
+<div>
+    <h4>Mix</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MixName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MixName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CFx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CFx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SVO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SVO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConductiveCarbon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConductiveCarbon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Binder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Binder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ratio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ratio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

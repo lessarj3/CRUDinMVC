@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CRUDinMVC.Models.Mix>
+﻿@model IEnumerable<CathodeRepoCommon.Models.Mix>
 
 <br />
 <p>
@@ -20,7 +20,7 @@
             @Html.DisplayNameFor(model => model.SVO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ConductiveCarbon)
+            @Html.DisplayNameFor(model => model.Carbon)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Binder)
@@ -43,7 +43,7 @@
             @Html.DisplayFor(modelItem => item.SVO)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ConductiveCarbon)
+            @Html.DisplayFor(modelItem => item.Carbon)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Binder)

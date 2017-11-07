@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace CRUDinMVC.Models
+namespace CathodeRepoCommon.Models
 {
     public class MixRepositorySQL : IMixRepository
     {

@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDinMVC", "CRUDinMVC\CRUDinMVC.csproj", "{5D6813A0-23E2-4325-9756-11D322B0976F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CathodeRepoCommon", "CathodeRepoCommon\CathodeRepoCommon.csproj", "{0BB31F94-D9DF-4A14-8210-BCB3EA0881D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5D6813A0-23E2-4325-9756-11D322B0976F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D6813A0-23E2-4325-9756-11D322B0976F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D6813A0-23E2-4325-9756-11D322B0976F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BB31F94-D9DF-4A14-8210-BCB3EA0881D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB31F94-D9DF-4A14-8210-BCB3EA0881D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB31F94-D9DF-4A14-8210-BCB3EA0881D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB31F94-D9DF-4A14-8210-BCB3EA0881D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
