@@ -175,9 +175,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CathodeRepoCommon\CathodeRepoCommon.csproj">
-      <Project>{0bb31f94-d9df-4a14-8210-bcb3ea0881d9}</Project>
-      <Name>CathodeRepoCommon</Name>
+    <ProjectReference Include="..\CathRepoCommon\CathRepoCommon.csproj">
+      <Project>{d15066a1-b4b2-4cd2-bd29-7cdc30a40006}</Project>
+      <Name>CathRepoCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

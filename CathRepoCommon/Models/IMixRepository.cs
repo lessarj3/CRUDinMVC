@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CathodeRepoCommon.Models
+namespace CathRepoCommon.Models
 {
     public interface IMixRepository
     {

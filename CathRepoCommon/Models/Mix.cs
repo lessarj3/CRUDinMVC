@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CathodeRepoCommon.Models
+namespace CathRepoCommon.Models
 {
     public class Mix
     {
