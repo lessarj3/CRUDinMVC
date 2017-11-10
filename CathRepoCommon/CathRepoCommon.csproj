@@ -60,6 +60,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Models\IMixRepository.cs" />
     <Compile Include="Models\Mix.cs" />
+    <Compile Include="Models\MixRepositoryFactory.cs" />
     <Compile Include="Models\MixRepositoryInMemory.cs" />
     <Compile Include="Models\MixRepositoryMongo.cs" />
     <Compile Include="Models\MixRepositorySQL.cs" />

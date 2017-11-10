@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CathRepoCommon.Models;
 
-namespace CRUDinMVC.Common.Data
+namespace CathRepoCommon.Models
 {
 	public class MixRepositoryInMemory : IMixRepository
 	{

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 //using CRUDinMVC.Models;
 using CathRepoCommon.Models;
-using CRUDinMVC.Common.Data;
 
 namespace CRUDinMVC.Controllers
 {
@@ -23,7 +22,10 @@ namespace CRUDinMVC.Controllers
             //_mixRepository = new MixRepositoryMongo();
 
             // This line of code is for using In Memory
-            _mixRepository = new MixRepositoryInMemory();
+            //_mixRepository = new MixRepositoryInMemory();
+
+            //Gets IMixRepository implementation from factory
+            _mixRepository = MixRepositoryFactory.Get();
         }
         //*************RETRIEVE ALL MIXES******************
         // GET
