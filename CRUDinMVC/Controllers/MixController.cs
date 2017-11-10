@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 //using CRUDinMVC.Models;
 using CathRepoCommon.Models;
+using CRUDinMVC.Common.Data;
 
 namespace CRUDinMVC.Controllers
 {
@@ -12,14 +13,17 @@ namespace CRUDinMVC.Controllers
     {
         private readonly IMixRepository _mixRepository;
 
+        //**********DATA MANAGEMENT SELECTION*************
         public MixController()
         {
             // This line of code for using SQL
-            _mixRepository = new MixRepositorySQL();
+            //_mixRepository = new MixRepositorySQL();
 
             // This line of code is for using MongoDB
             //_mixRepository = new MixRepositoryMongo();
 
+            // This line of code is for using In Memory
+            _mixRepository = new MixRepositoryInMemory();
         }
         //*************RETRIEVE ALL MIXES******************
         // GET
@@ -41,7 +45,7 @@ namespace CRUDinMVC.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            return View(_mixRepository.GetMixes().Where(m => m.Id == id).FirstOrDefault());
+            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
         }
 
         // POST: Mix/Create
@@ -69,7 +73,7 @@ namespace CRUDinMVC.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View(_mixRepository.GetMixes().Where(m=>m.Id == id).FirstOrDefault());
+            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
         }
 
         // POST: Mix/Edit/5

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDinMVC", "CRUDinMVC\CRUD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CathRepoCommon", "CathRepoCommon\CathRepoCommon.csproj", "{D15066A1-B4B2-4CD2-BD29-7CDC30A40006}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CathRepoTest", "CathRepoTest\CathRepoTest.csproj", "{644E6EEC-A80F-4703-8A3F-0A6D988AE7AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D15066A1-B4B2-4CD2-BD29-7CDC30A40006}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D15066A1-B4B2-4CD2-BD29-7CDC30A40006}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D15066A1-B4B2-4CD2-BD29-7CDC30A40006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{644E6EEC-A80F-4703-8A3F-0A6D988AE7AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{644E6EEC-A80F-4703-8A3F-0A6D988AE7AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{644E6EEC-A80F-4703-8A3F-0A6D988AE7AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{644E6EEC-A80F-4703-8A3F-0A6D988AE7AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

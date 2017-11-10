@@ -18,12 +18,46 @@ namespace CathRepoCommon.Models
         }
 
         // **************** ADD NEW MIX *********************
+        public void AddMix(IEnumerable<Mix> mixes)
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand("AddNewMix", con);
+
+
+            foreach (var mix in mixes)
+            {
+ 
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MixName", mix.MixName);
+                cmd.Parameters.AddWithValue("@CFx", mix.CFx);
+                cmd.Parameters.AddWithValue("@SVO", mix.SVO);
+                cmd.Parameters.AddWithValue("@ConductiveCarbon", mix.Carbon);
+                cmd.Parameters.AddWithValue("@Binder", mix.Binder);
+                cmd.Parameters.AddWithValue("@Ratio", mix.Ratio);
+
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    con.Close();
+                    throw new Exception("Error Adding Mix", ex);
+                }
+            }
+            //if(con.IsOpen)
+            con.Close();
+        }
+
+        // **************** ADD NEW MIX *********************
         public void AddMix(Mix mix)
         {
             connection();
             SqlCommand cmd = new SqlCommand("AddNewMix", con);
-            cmd.CommandType = CommandType.StoredProcedure;
 
+
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MixName", mix.MixName);
             cmd.Parameters.AddWithValue("@CFx", mix.CFx);
             cmd.Parameters.AddWithValue("@SVO", mix.SVO);
@@ -43,8 +77,10 @@ namespace CathRepoCommon.Models
             finally
             {
                 con.Close();
-            }      
+            }
+
         }
+
 
         // ********** VIEW MIX DETAILS ********************
         public IEnumerable<Mix> GetMixes()
