@@ -59,9 +59,11 @@ namespace CRUDinMVC.Controllers
                 if (ModelState.IsValid)
                 {                   
                     _mixRepository.AddMix(mix);
+                    TempData["Created"] = "Mix added successfully!";
+                    return RedirectToAction("Index");
                 }
-                TempData["Created"] = "Mix added successfully!";
-                return RedirectToAction("Index");
+                else
+                    return View();
             }
             catch
             {
