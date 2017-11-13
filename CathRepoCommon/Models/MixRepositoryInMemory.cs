@@ -14,24 +14,17 @@ namespace CathRepoCommon.Models
 		public MixRepositoryInMemory()
 		{
 			_mixes = new List<Mix>();
-		    _mixes.Add(new Mix { Id = 1, MixName = "Mix 1", CFx = 12, SVO = 24, Carbon = 32, Binder = 23, Ratio = 23 });
-		    _mixes.Add(new Mix { Id = 2, MixName = "Mix 2", CFx = 12, SVO = 24, Carbon = 32, Binder = 23, Ratio = 23 });
-
-
         }
 
         public void AddMix(IEnumerable<Mix> mixes)
 		{
 			_mixes.AddRange(mixes);
-
 		}
 
 		public void AddMix(Mix mix)
 		{
 			_mixes.Add(mix);
-
 		}
-
 
 		public void DeleteMix(int mixId)
 		{
