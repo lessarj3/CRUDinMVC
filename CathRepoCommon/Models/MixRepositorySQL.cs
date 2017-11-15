@@ -26,7 +26,7 @@ namespace CathRepoCommon.Models
 
             foreach (var mix in mixes)
             {
- 
+
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MixName", mix.MixName);
                 cmd.Parameters.AddWithValue("@CFx", mix.CFx);
