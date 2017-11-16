@@ -13,7 +13,7 @@ namespace CathRepoCommon.Models
         {
             if (_repo == null)
             {
-                _repo = new MixRepositoryEF();
+                _repo = new MixRepositorySQL();
                 return _repo;
             }
             else

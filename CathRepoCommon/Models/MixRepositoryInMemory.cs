@@ -46,5 +46,10 @@ namespace CathRepoCommon.Models
 			_mixes.Remove(_mixes.Where(m => m.Id == mix.Id).FirstOrDefault());
 			_mixes.Add(mix);
 		}
+
+	    public void DeleteAll()
+	    {
+	        _mixes.Clear();
+	    }
 	}
 }

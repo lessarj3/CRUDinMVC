@@ -16,7 +16,7 @@ namespace CRUDinMVC.Controllers
         public MixController()
         {
             // This line of code for using SQL
-            _mixRepository = new MixRepositorySQL();
+            //_mixRepository = new MixRepositorySQL();
 
             // This line of code is for using MongoDB
             //_mixRepository = new MixRepositoryMongo();
@@ -25,7 +25,7 @@ namespace CRUDinMVC.Controllers
             //_mixRepository = new MixRepositoryInMemory();
 
             //Gets IMixRepository implementation from factory
-            //_mixRepository = MixRepositoryFactory.Get();
+            _mixRepository = MixRepositoryFactory.Get();
         }
         //*************RETRIEVE ALL MIXES******************
         // GET
