@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace CathRepoCommon.Models
 {
     public class Mix
     {
         public int Id { get; set; }
+        [StringLength(10, ErrorMessage="Mix name too long")]
         public string MixName { get; set; }
         public int CFx { get; set; }
         public int SVO { get; set; }

@@ -44,10 +44,16 @@ namespace CRUDinMVC.Controllers
 
         // 3. ************* View MIX DETAILS ******************
         // GET: Mix/Details/5
-        [HttpGet]
-        public ActionResult Details(int id)
+        //[HttpGet]
+        //public ActionResult Details(int id)
+        //{
+        //    return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
+        //}
+
+        public ActionResult Details(int Id)
         {
-            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
+            Mix mix = _mixRepository.GetMixes().FirstOrDefault(m => m.Id == Id);
+            return PartialView("_Details", mix);
         }
 
         // POST: Mix/Create
