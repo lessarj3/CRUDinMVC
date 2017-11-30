@@ -32,8 +32,20 @@ namespace CathRepoTest
 
         public void TestAddingMixWithPellets()
         {
-            //var mix = new Mix();
-            //mix.Pellets.Add();
+            repo = MixRepositoryFactory.Get();
+            var mix = new Mix();
+
+
+            var pellet1 = new Pellet(1.000, 16.015, 2.350, 25);
+            var pellet2 = new Pellet(2.000, 17.015, 2.450, 30);
+            var pellet3 = new Pellet(3.000, 18.015, 2.550, 35);
+
+            mix.Pellets.Add(pellet1);
+            mix.Pellets.Add(pellet2);
+            mix.Pellets.Add(pellet3);
+
+            repo.AddMix(mix);
+
         }
 
         private void SetUpRepo()

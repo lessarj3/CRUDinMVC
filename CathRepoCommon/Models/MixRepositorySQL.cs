@@ -168,6 +168,34 @@ namespace CathRepoCommon.Models
                 con.Close();
             }
         }
+        // **************** ADD NEW PELLET *********************
+        public void AddPellet(Pellet pellet)
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand("AddNewPellet", con);
+
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Mass", pellet.Mass);
+            cmd.Parameters.AddWithValue("@Thickness", pellet.Thickness);
+            cmd.Parameters.AddWithValue("@Diameter", pellet.Diameter);
+            cmd.Parameters.AddWithValue("@Resistance", pellet.Resistance);
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Adding Pellet", ex);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
 
     }
 

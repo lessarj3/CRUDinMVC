@@ -14,9 +14,9 @@ namespace CathRepoCommon.Models
 		public MixRepositoryInMemory()
 		{
 			_mixes = new List<Mix>();
-        }
+		}
 
-        public void AddMix(IEnumerable<Mix> mixes)
+		public void AddMix(IEnumerable<Mix> mixes)
 		{
 			_mixes.AddRange(mixes);
 		}
@@ -31,12 +31,12 @@ namespace CathRepoCommon.Models
 			_mixes.Remove(_mixes.Where(m => m.Id == mixId).FirstOrDefault());
 		}
 
-	    public IEnumerable<Mix> GetMixes()
-	    {
-	        return _mixes;
-	    }
+		public IEnumerable<Mix> GetMixes()
+		{
+			return _mixes;
+		}
 
-        public Mix GetById(int mixId)
+		public Mix GetById(int mixId)
 		{
 			return _mixes.Where(m => m.Id == mixId).FirstOrDefault();
 		}
@@ -47,9 +47,14 @@ namespace CathRepoCommon.Models
 			_mixes.Add(mix);
 		}
 
-	    public void DeleteAll()
-	    {
-	        _mixes.Clear();
-	    }
+		public void DeleteAll()
+		{
+			_mixes.Clear();
+		}
+
+		public void AddPellet(Pellet pellet)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

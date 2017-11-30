@@ -27,6 +27,11 @@ namespace CathRepoCommon.Models
             }
         }
 
+        public void AddPellet(Pellet pellet)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteMix(int id)
         {
             using (var db = new MixDBContext())

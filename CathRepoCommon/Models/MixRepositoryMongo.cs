@@ -50,5 +50,10 @@ namespace CathRepoCommon.Models
         {
             throw new NotImplementedException();
         }
+
+        public void AddPellet(Pellet pellet)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
