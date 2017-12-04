@@ -45,7 +45,7 @@
 
 
 <div id="result">
-    @Html.Partial("_Pellets") 
+    @Html.Partial("_Pellets", Model.Pellets) 
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
