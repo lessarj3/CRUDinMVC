@@ -74,6 +74,7 @@
     <Compile Include="Models\MixRepositoryInMemory.cs" />
     <Compile Include="Models\MixRepositoryMongo.cs" />
     <Compile Include="Models\MixRepositorySQL.cs" />
+    <Compile Include="Models\Pellet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,56 @@
+﻿@model CathRepoCommon.Models.Mix
+
+<div>
+    <h4>Mix</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MixName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MixName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CFx)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CFx)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SVO)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SVO)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Carbon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Carbon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Binder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Binder)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ratio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ratio)
+        </dd>
+    </dl>   
+</div>
+
+
+<div id="result">
+    @Html.Partial("_Pellets") 
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+@*@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")*@
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>

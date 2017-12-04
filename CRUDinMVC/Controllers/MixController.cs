@@ -120,5 +120,12 @@ namespace CRUDinMVC.Controllers
                 return View();
             }
         }
-    }
+        //Display Mix and Pellet Data
+        public ActionResult MixWithPellets(int id)
+        {
+           
+           
+            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
+            
+    }}
 }

@@ -1,0 +1,33 @@
+﻿@using CathRepoCommon.Models
+@model IEnumerable<Pellet>
+
+<dl class="dl-horizontal">     
+    <dt>
+        @Html.DisplayNameFor(model =>model.Mass)
+    </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Diameter)
+    </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Thickness)
+    </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Resistance)
+    </dt>
+
+    @foreach (var item in Model)
+    {      
+        <dd>
+            @Html.DisplayFor(modelItem => item.Mass)
+        </dd>        
+        <dd>
+            @Html.DisplayFor(modelItem => item.Diameter)
+        </dd>
+        <dd>
+            @Html.DisplayFor(modelItem => item.Thickness)
+        </dd>       
+        <dd>
+            @Html.DisplayFor(modelItem => item.Resistance)
+        </dd>        
+    }
+</dl>

@@ -14,10 +14,9 @@ namespace CathRepoCommon.Models
 		public MixRepositoryInMemory()
 		{
 			_mixes = new List<Mix>();
-            SetUpRepo();
-        }
+		}
 
-        public void AddMix(IEnumerable<Mix> mixes)
+		public void AddMix(IEnumerable<Mix> mixes)
 		{
 			_mixes.AddRange(mixes);
 		}
@@ -32,12 +31,12 @@ namespace CathRepoCommon.Models
 			_mixes.Remove(_mixes.Where(m => m.Id == mixId).FirstOrDefault());
 		}
 
-	    public IEnumerable<Mix> GetMixes()
-	    {
-	        return _mixes;
-	    }
+		public IEnumerable<Mix> GetMixes()
+		{
+			return _mixes;
+		}
 
-        public Mix GetById(int mixId)
+		public Mix GetById(int mixId)
 		{
 			return _mixes.Where(m => m.Id == mixId).FirstOrDefault();
 		}
@@ -48,14 +47,14 @@ namespace CathRepoCommon.Models
 			_mixes.Add(mix);
 		}
 
-        private void SetUpRepo()
-        {
-            _mixes.Add(new Mix { MixName = "Mix 1", CFx = 90, Id = 1, Ratio = 1, SVO = 10 });
-            _mixes.Add(new Mix { MixName = "Mix 2", CFx = 80, Id = 2, Ratio = 1, SVO = 20 });
-            _mixes.Add(new Mix { MixName = "Mix 3", CFx = 70, Id = 3, Ratio = 1, SVO = 30 });
-            _mixes.Add(new Mix { MixName = "Mix 4", CFx = 60, Id = 4, Ratio = 1, SVO = 40 });
-            _mixes.Add(new Mix { MixName = "Mix 5", CFx = 50, Id = 5, Ratio = 1, SVO = 50 });
-            _mixes.Add(new Mix { MixName = "Mix 6", CFx = 40, Id = 6, Ratio = 1, SVO = 60 });
-        }
-    }
+		public void DeleteAll()
+		{
+			_mixes.Clear();
+		}
+
+		public void AddPellet(Pellet pellet)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

@@ -48,7 +48,9 @@ namespace CathRepoCommon.Models
 
         public void UpdateDetails(Mix mix)
         {
-            throw new NotImplementedException();
+           // _collection.UpdateOne(mix);
         }
+
+        
     }
 }
