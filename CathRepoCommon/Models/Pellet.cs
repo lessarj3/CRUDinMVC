@@ -8,17 +8,17 @@ namespace CathRepoCommon.Models
 {
     public class Pellet
     {
-        private double v1;
-        private double v2;
-        private double v3;
-        private int v4;
+        //private double v1;
+        //private double v2;
+        //private double v3;
+        //private int v4;
 
-        public Pellet(double v1, double v2, double v3, int v4)
+        public Pellet(double mass, double diameter, double thickness, int resistance)
         {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.v3 = v3;
-            this.v4 = v4;
+            Mass = mass;
+            Diameter = diameter;
+            Thickness = thickness;
+            Resistance = resistance;
         }
 
         public Pellet()
@@ -26,9 +26,9 @@ namespace CathRepoCommon.Models
             
         }
 
-        public int Mass { get; set; }
-        public int Diameter { get; set; }
-        public int Thickness { get; set; }
-        public int Resistance { get; set; }
+        public double Mass { get; set; }
+        public double Diameter { get; set; }
+        public double Thickness { get; set; }
+        public double Resistance { get; set; }
     }
 }

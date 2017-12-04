@@ -9,8 +9,8 @@ namespace CathRepoCommon.Models
         void DeleteMix(int id);
         IEnumerable<Mix> GetMixes();
         //IEnumerable<Mix> GetMixesByChemistry(string chemistry)
-        void UpdateDetails(Mix mix); 
-        // Add in PELLET method JJL     
-        void AddPellet(Pellet pellet);
+        void UpdateDetails(Mix mix);
+      
+
     }
 }

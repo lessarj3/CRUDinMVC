@@ -48,12 +48,9 @@ namespace CathRepoCommon.Models
 
         public void UpdateDetails(Mix mix)
         {
-            throw new NotImplementedException();
+           // _collection.UpdateOne(mix);
         }
 
-        public void AddPellet(Pellet pellet)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
