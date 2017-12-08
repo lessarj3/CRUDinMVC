@@ -13,7 +13,7 @@ namespace CathRepoCommon.Models
             Pellets = new List<Pellet>();
         }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required, StringLength(25, ErrorMessage = "Mix Name too long")]
         public string MixName { get; set; }
         [Range(0, 100)]

@@ -32,7 +32,7 @@ namespace CathRepoCommon.Models
             throw new NotImplementedException();
         }
 
-        public void DeleteMix(int id)
+        public void DeleteMix(string id)
         {
             using (var db = new MixDBContext())
             {

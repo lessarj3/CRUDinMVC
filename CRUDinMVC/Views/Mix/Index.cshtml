@@ -1,13 +1,21 @@
 ﻿@model IEnumerable<CathRepoCommon.Models.Mix>
 
 <br />
-<p>
-    @Html.ActionLink("Create New", "Create")
-    <h3><font color="green">@TempData["Created"]</font></h3>
-    <h3><font color="red">@TempData["Deleted"]</font></h3>
-    <h3><font color="orange">@TempData["Edited"]</font></h3>
-</p>
+@if (TempData["Message"] != null && TempData["Message"].ToString().Contains("Error"))
+{
+    <p class="alert alert-danger alert-dismissable" id="Message"><strong>@TempData["Message"]</strong>
+       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </p>
+}
+@if (TempData["Message"] != null && !TempData["Message"].ToString().Contains("Error"))
+{
+    <p class="alert alert-success alert-dismissable" id="Message">
+        <strong>@TempData["Message"]</strong>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </p>
+}
 
+@Html.ActionLink("Create New", "Create")
 <table class="table">
     <tr>
         <th>
@@ -73,3 +81,8 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script> 
 <script src="~/Scripts/Mix.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".alert-success").delay(3000).fadeOut(400);
+    });
+</script>
