@@ -30,5 +30,8 @@ namespace CathRepoCommon.Models
         public double Diameter { get; set; }
         public double Thickness { get; set; }
         public double Resistance { get; set; }
+        public double VolumetricCapacity { get; set; }
+        public double Density { get; set; }
+
     }
 }

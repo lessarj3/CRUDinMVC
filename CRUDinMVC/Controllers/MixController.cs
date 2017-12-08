@@ -45,7 +45,7 @@ namespace CRUDinMVC.Controllers
         // 3. ************* View MIX DETAILS ******************
         // GET: Mix/Details/5
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
         }
@@ -62,27 +62,26 @@ namespace CRUDinMVC.Controllers
                     TempData["Created"] = "Mix added successfully!";
                     return RedirectToAction("Index");
                 }
-                else
-                    return View();
+                return View();
             }
-            catch
+            catch(Exception)
             {
-                TempData["Created"] = "Error! Somethings amiss!";
-                return View(); 
+                TempData["Error"] = "Error! Mix not created!";
+                return View();
             }
         }
 
         // 3. ************* EDIT MIX DETAILS ******************
         // GET: Mix/Edit/5
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
         }
 
         // POST: Mix/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Mix mix)
+        public ActionResult Edit(string id, Mix mix)
         {
             try
             {
@@ -92,16 +91,16 @@ namespace CRUDinMVC.Controllers
             }
             catch
             {
-                TempData["Edited"] = "Update failed...";
+                TempData["Error"] = "Update failed... :(";
                 return View();
             }
         }
 
         // 4. ************* DELETE MIX DETAILS ******************
         // GET: Mix/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            int mix = id;
+            var mix = id;
             try
             {
                 _mixRepository.DeleteMix(id);
@@ -110,12 +109,12 @@ namespace CRUDinMVC.Controllers
             }
             catch
             {
-                TempData["Deleted"] = "Error! Somethings amiss!";
+                TempData["Error"] = "Error! Mix not deleted!";
                 return View();
             }
         }
         //Display Mix and Pellet Data
-        public ActionResult MixWithPellets(int id)
+        public ActionResult MixWithPellets(string id)
         {
            
            

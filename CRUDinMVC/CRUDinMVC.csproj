@@ -148,6 +148,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\ViewModels\MixViewModels.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Mix\Create.cshtml" />
@@ -170,6 +171,7 @@
     <Content Include="Views\Mix\Edit.cshtml" />
     <Content Include="Views\Mix\MixWithPellets.cshtml" />
     <Content Include="Views\Mix\_Pellets.cshtml" />
+    <Content Include="Views\Mix\_MixChar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

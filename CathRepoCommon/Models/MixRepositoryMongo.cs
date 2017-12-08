@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using CathRepoCommon.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace CathRepoCommon.Models
@@ -18,7 +19,15 @@ namespace CathRepoCommon.Models
 
         public MixRepositoryMongo()
         {
+            #if DEBUG
             var url = MongoUrl.Create(ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString);
+            #else
+            var url = MongoUrl.Create(ConfigurationManager.AppSettings.Get("(MONGOHQ_URL|MONGOLAB_URI)"));
+            #endif
+
+
+
+
             _client = new MongoClient(url);
             _database = _client.GetDatabase("mixes");
             _collection = _database.GetCollection<Mix>("Mix");
@@ -26,6 +35,7 @@ namespace CathRepoCommon.Models
 
         public void AddMix(Mix mix)
         {
+            mix.Id = Guid.NewGuid().ToString();
             _collection.InsertOne(mix);
         }
 
@@ -34,21 +44,29 @@ namespace CathRepoCommon.Models
             _collection.InsertMany(mixes);
         }
 
-        public void DeleteMix(int id)
+        public void DeleteMix(string id)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Mix>.Filter.Eq("_id", id);
+            _collection.DeleteOne(filter);
         }
 
         public IEnumerable<Mix> GetMixes()
         {
-            //FilterDefinition<Mix> mixFilter = new FilterDefinition<Mix>();
+            //List<FilterDefinition<Mix>> filters = new List<FilterDefinition<Mix>>();
+            //var builder = Builders<Mix>.Filter;
+            //filters.Add(builder.Lte(key, valueB));
+            //filters.Add(builder.Gte("MixName", string.Empty));
+            //var filter = builder.And(filters);
+            //var mixes = _collection.Find(filter).Limit(10).ToList();
+
             var mixes = _collection.Find(FilterDefinition<Mix>.Empty).Limit(10).ToList();
             return mixes;
         }
 
         public void UpdateDetails(Mix mix)
         {
-           // _collection.UpdateOne(mix);
+            var filter = Builders<Mix>.Filter.Eq("_id", mix.Id);
+            _collection.ReplaceOne(filter, mix);
         }
 
         

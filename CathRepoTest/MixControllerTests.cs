@@ -13,7 +13,7 @@ namespace CathRepoTest
         public void TestAddingMix()
         {
             var mixController = new MixController();
-            ActionResult  result = mixController.Create(new Mix { MixName = "Mix Name", CFx = 90, Id = 1, Ratio = 1, SVO = 10 });
+            ActionResult  result = mixController.Create(new Mix { MixName = "Mix Name", CFx = 90,  Ratio = 1, SVO = 10 });
         }
     }
 }

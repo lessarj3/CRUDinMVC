@@ -1,23 +1,17 @@
-﻿@*@using CathRepoCommon.Models*@
-@model IEnumerable<CathRepoCommon.Models.Pellet>
-
-<table class ="table">
+﻿@*<table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Mass)</th>
         <th>@Html.DisplayNameFor(model => model.Diameter)</th>
         <th>@Html.DisplayNameFor(model => model.Thickness)</th>
         <th>@Html.DisplayNameFor(model => model.Resistance)</th>
-        
-
     </tr>
+
     
-    @foreach (var item in Model)
-    {
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Mass)</td>
             <td>@Html.DisplayFor(modelItem => item.Diameter)</td>
             <td>@Html.DisplayFor(modelItem => item.Thickness)</td>
             <td>@Html.DisplayFor(modelItem => item.Resistance)</td>
         </tr>
-    }
-</table>
+    
+</table>*@
