@@ -59,14 +59,14 @@ namespace CRUDinMVC.Controllers
                 if (ModelState.IsValid)
                 {                   
                     _mixRepository.AddMix(mix);
-                    TempData["Created"] = "Mix added successfully!";
+                    TempData["Message"] = "Mix added successfully!";
                     return RedirectToAction("Index");
                 }
                 return View();
             }
             catch(Exception)
             {
-                TempData["Error"] = "Error! Mix not created!";
+                TempData["Message"] = "Error! Mix not created!";
                 return View();
             }
         }
@@ -86,12 +86,12 @@ namespace CRUDinMVC.Controllers
             try
             {
                 _mixRepository.UpdateDetails(mix);
-                TempData["Edited"] = "Mix was changed!";
+                TempData["Message"] = "Mix was changed!";
                 return RedirectToAction("Index");
             }
             catch
             {
-                TempData["Error"] = "Update failed... :(";
+                TempData["Message"] = "Error! Update failed... :(";
                 return View();
             }
         }
@@ -104,12 +104,12 @@ namespace CRUDinMVC.Controllers
             try
             {
                 _mixRepository.DeleteMix(id);
-                TempData["Deleted"] = "Mix was deleted!";
+                TempData["Message"] = "Mix was deleted!";
                 return RedirectToAction("Index");
             }
             catch
             {
-                TempData["Error"] = "Error! Mix not deleted!";
+                TempData["Message"] = "Error! Mix not deleted!";
                 return View();
             }
         }
