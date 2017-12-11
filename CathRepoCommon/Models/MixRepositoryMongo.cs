@@ -19,14 +19,16 @@ namespace CathRepoCommon.Models
 
         public MixRepositoryMongo()
         {
+            var databaseName = "mixes";
             #if DEBUG
             var url = MongoUrl.Create(ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString);
             #else
             var url = MongoUrl.Create(ConfigurationManager.AppSettings.Get("MONGOLAB_URI"));
+            databaseName = url.DatabaseName;
             #endif
 
-            _client = new MongoClient(url);
-            _database = _client.GetDatabase("mixes");
+            _client = new MongoClient(url);           
+            _database = _client.GetDatabase(databaseName);
             _collection = _database.GetCollection<Mix>("Mix");
         }
 
