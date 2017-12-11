@@ -14,7 +14,7 @@ namespace CathRepoTest
         public void TestMixNameTooLong()
         {
             var mix = new Mix();
-            mix.MixName = "Mix8";
+            mix.MixName = "Mix8aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             mix.Ratio = 1;
             var results = ValidateModel(mix);
             Assert.AreEqual(1, results.Count());
