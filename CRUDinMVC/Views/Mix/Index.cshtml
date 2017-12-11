@@ -10,7 +10,8 @@
 
 @if (TempData["Message"] != null && TempData["Message"].ToString().Contains("Error"))
 {
-    <p class="alert alert-danger alert-dismissable" id="Message"><strong>@TempData["Message"]</strong>
+    <p class="alert alert-danger alert-dismissable" id="Message">
+        <strong>@TempData["Message"]</strong>
         <a href = "#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </p>
 }
@@ -39,7 +40,6 @@
 
 @foreach (var item in Model)
 {
-
     <tr>
         <td>@Html.DisplayFor(modelItem => item.MixName)</td>
         <td>@Html.DisplayFor(modelItem => item.ActiveMaterial)</td>
@@ -58,6 +58,7 @@
 }
 
 </table>
+<script src="~/Scripts/jquery-1.10.2min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/Mix.js"></script>
