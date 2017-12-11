@@ -22,7 +22,7 @@ namespace CathRepoCommon.Models
             #if DEBUG
             var url = MongoUrl.Create(ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString);
             #else
-            var url = MongoUrl.Create(ConfigurationManager.AppSettings.Get("(MONGOHQ_URL|MONGOLAB_URI)"));
+            var url = MongoUrl.Create(ConfigurationManager.AppSettings.Get("MONGOLAB_URI"));
             #endif
 
             _client = new MongoClient(url);
