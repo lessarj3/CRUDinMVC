@@ -44,16 +44,10 @@ namespace CRUDinMVC.Controllers
 
         // 3. ************* View MIX DETAILS ******************
         // GET: Mix/Details/5
-        //[HttpGet]
-        //public ActionResult Details(int id)
-        //{
-        //    return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
-        //}
-
-        public ActionResult Details(int Id)
+        [HttpGet]
+        public ActionResult Details(string id)
         {
-            Mix mix = _mixRepository.GetMixes().FirstOrDefault(m => m.Id == Id);
-            return PartialView("_Details", mix);
+            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
         }
 
         // POST: Mix/Create
@@ -65,67 +59,106 @@ namespace CRUDinMVC.Controllers
                 if (ModelState.IsValid)
                 {                   
                     _mixRepository.AddMix(mix);
-                    TempData["Created"] = "Mix added successfully!";
+                    TempData["Message"] = "Mix added successfully!";
                     return RedirectToAction("Index");
                 }
-                else
-                    return View();
+                return View();
             }
-            catch
+            catch(Exception)
             {
-                TempData["Created"] = "Error! Somethings amiss!";
-                return View(); 
+                TempData["Message"] = "Error! Mix not created!";
+                return View();
             }
         }
 
         // 3. ************* EDIT MIX DETAILS ******************
         // GET: Mix/Edit/5
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
         }
 
         // POST: Mix/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Mix mix)
+        public ActionResult Edit(string id, Mix mix)
         {
             try
             {
                 _mixRepository.UpdateDetails(mix);
-                TempData["Edited"] = "Mix was changed!";
+                TempData["Message"] = "Mix was changed!";
                 return RedirectToAction("Index");
             }
             catch
             {
-                TempData["Edited"] = "Update failed...";
+                TempData["Message"] = "Error! Update failed... :(";
                 return View();
             }
         }
 
         // 4. ************* DELETE MIX DETAILS ******************
         // GET: Mix/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            int mix = id;
+            var mix = id;
             try
             {
                 _mixRepository.DeleteMix(id);
-                TempData["Deleted"] = "Mix was deleted!";
+                TempData["Message"] = "Mix was deleted!";
                 return RedirectToAction("Index");
             }
             catch
             {
-                TempData["Deleted"] = "Error! Somethings amiss!";
+                TempData["Message"] = "Error! Mix not deleted!";
                 return View();
             }
         }
         //Display Mix and Pellet Data
-        public ActionResult MixWithPellets(int id)
+        public ActionResult MixWithPellets(string id)
         {
            
            
             return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
             
-    }}
+        }
+        // POST: SearchForm
+        [HttpPost]
+        public ActionResult Search(MixSearchFilter filter)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _mixRepository.Search(filter);                    
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Search Error!";
+                return View();
+            }
+        }
+        // POST: Pellet/Create
+        [HttpPost]
+        public ActionResult AddPellet(Pellet pellet)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _mixRepository.AddPellet(pellet);
+                    TempData["Message"] = "Pellet added successfully!";
+                    return RedirectToAction("MixWithPellet");
+                }
+                return View();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Error! Pellet not added!";
+                return View();
+            }
+        }
+    }
 }

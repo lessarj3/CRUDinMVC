@@ -102,7 +102,7 @@ namespace CathRepoCommon.Models
                 mixlist.Add(
                     new Mix
                     {
-                        Id = Convert.ToInt32(dr["Id"]),
+                        Id = (string)dr["Id"],
                         MixName = Convert.ToString(dr["MixName"]),
                         CFx = Convert.ToInt32(dr["CFx"]),
                         SVO = Convert.ToInt32(dr["SVO"]),
@@ -145,7 +145,7 @@ namespace CathRepoCommon.Models
         }
 
         // ********************** DELETE MIX DETAILS *******************
-        public void DeleteMix(int id)
+        public void DeleteMix(string id)
         {
             connection();
             SqlCommand cmd = new SqlCommand("DeleteMix", con);
@@ -195,6 +195,12 @@ namespace CathRepoCommon.Models
                 con.Close();
             }
 
+        }
+
+        // **************** Mix Search Filter *********************
+        public void Search(MixSearchFilter filter)
+        {
+            //Add data
         }
 
     }

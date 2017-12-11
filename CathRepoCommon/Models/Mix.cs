@@ -13,20 +13,21 @@ namespace CathRepoCommon.Models
             Pellets = new List<Pellet>();
         }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required, StringLength(25, ErrorMessage = "Mix Name too long")]
         public string MixName { get; set; }
         [Range(0, 100)]
-        public int CFx { get; set; }
+        public double CFx { get; set; }
         [Range(0, 100)]
-        public int SVO { get; set; }
+        public double SVO { get; set; }
         [Range(0, 100)]
-        public int Carbon { get; set; }
+        public double Carbon { get; set; }
         [Range(0, 100)]
-        public int Binder { get; set; }
+        public double Binder { get; set; }
         public int Ratio { get; set; }
         public List<Pellet> Pellets { get; set; }
-        //public int mAh { get; set; }
+        public double mAh { get; set; }
+        public double ActiveMaterial { get; set; }
         //public string Tag { get; set; }
         //public string Experiment { get; set; }
         //public string CFxLot { get; set; }

@@ -1,56 +1,57 @@
-﻿@model CathRepoCommon.Models.Mix
+﻿@using System.Web.Mvc.Html
+@using CathRepoCommon.Models
+@model Mix
 
 <div>
-    <h4>Mix</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MixName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MixName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CFx)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CFx)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SVO)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SVO)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Carbon)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Carbon)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Binder)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Binder)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Ratio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Ratio)
-        </dd>
-    </dl>   
+    <h3>Mix Recipe</h3>
+    
+    <table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.MixName)</th>
+        
+        <th>@Html.DisplayNameFor(model => model.CFx)</th>
+        
+        <th>@Html.DisplayNameFor(model => model.SVO)</th>
+        
+        <th>@Html.DisplayNameFor(model => model.Carbon)</th>
+        
+        <th>@Html.DisplayNameFor(model => model.Binder)</th>
+        
+        <th>@Html.DisplayNameFor(model => model.Ratio)</th>        
+    </tr>
+    <tr>      
+        <td>@Html.DisplayFor(model => model.MixName)</td>        
+        
+        <td>@Html.DisplayFor(model => model.CFx)</td>        
+        
+        <td>@Html.DisplayFor(model => model.SVO)</td>
+        
+        <td>@Html.DisplayFor(model => model.Carbon)</td>       
+        
+        <td>@Html.DisplayFor(model => model.Binder)</td>        
+
+        <td>@Html.DisplayFor(model => model.Ratio)</td> 
+    </tr> 
+    </table>  
 </div>
 
 
-<div id="result">
-    @Html.Partial("_Pellets", Model.Pellets) 
+<div>
+    @{
+        ViewBag.Title = "PelletData";
+        //var pellet = new Pellet(1, 2, 3, 4);
+    }
+    <h3>PelletData</h3>
+    @Html.Partial("_Pellets", Model.Pellets)
+
+
 </div>
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-@*@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")*@
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/~/bundles/jquery")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/~/bundles/jqueryval")" type="text/javascript"></script>

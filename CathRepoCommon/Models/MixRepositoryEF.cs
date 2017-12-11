@@ -32,7 +32,7 @@ namespace CathRepoCommon.Models
             throw new NotImplementedException();
         }
 
-        public void DeleteMix(int id)
+        public void DeleteMix(string id)
         {
             using (var db = new MixDBContext())
             {
@@ -60,6 +60,11 @@ namespace CathRepoCommon.Models
                 db.Entry(mix).State = EntityState.Modified;
                 db.SaveChanges();
             }
+        }
+
+        public void Search(MixSearchFilter filter)
+        {
+            throw new NotImplementedException();
         }
     }
 }

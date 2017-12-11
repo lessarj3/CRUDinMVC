@@ -26,7 +26,7 @@ namespace CathRepoCommon.Models
 			_mixes.Add(mix);
 		}
 
-		public void DeleteMix(int mixId)
+		public void DeleteMix(string mixId)
 		{
 			_mixes.Remove(_mixes.Where(m => m.Id == mixId).FirstOrDefault());
 		}
@@ -36,7 +36,7 @@ namespace CathRepoCommon.Models
 			return _mixes;
 		}
 
-		public Mix GetById(int mixId)
+		public Mix GetById(string mixId)
 		{
 			return _mixes.Where(m => m.Id == mixId).FirstOrDefault();
 		}
@@ -53,6 +53,11 @@ namespace CathRepoCommon.Models
 		}
 
 		public void AddPellet(Pellet pellet)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Search(MixSearchFilter filter)
 		{
 			throw new NotImplementedException();
 		}

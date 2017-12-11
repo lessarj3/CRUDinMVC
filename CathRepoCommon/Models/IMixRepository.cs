@@ -6,11 +6,10 @@ namespace CathRepoCommon.Models
     {
         void AddMix(IEnumerable<Mix> mixes);
         void AddMix(Mix mix);
-        void DeleteMix(int id);
+        void DeleteMix(string id);
         IEnumerable<Mix> GetMixes();
-        //IEnumerable<Mix> GetMixesByChemistry(string chemistry)
         void UpdateDetails(Mix mix);
-      
-
+        void Search(MixSearchFilter filter);
+        void AddPellet(Pellet pellet);
     }
 }
