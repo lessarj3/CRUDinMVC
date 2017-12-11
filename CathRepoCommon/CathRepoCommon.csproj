@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\MixSearchFilter.cs" />
     <Compile Include="Models\IMixRepository.cs" />
     <Compile Include="Models\Mix.cs" />
     <Compile Include="Models\MixDBContext.cs" />

@@ -197,6 +197,12 @@ namespace CathRepoCommon.Models
 
         }
 
+        // **************** Mix Search Filter *********************
+        public void Search(MixSearchFilter filter)
+        {
+            //Add data
+        }
+
     }
 
     public class MyConnectionException : Exception

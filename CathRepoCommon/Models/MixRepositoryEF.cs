@@ -61,5 +61,10 @@ namespace CathRepoCommon.Models
                 db.SaveChanges();
             }
         }
+
+        public void Search(MixSearchFilter filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

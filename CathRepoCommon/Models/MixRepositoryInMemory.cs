@@ -56,5 +56,10 @@ namespace CathRepoCommon.Models
 		{
 			throw new NotImplementedException();
 		}
+
+		public void Search(MixSearchFilter filter)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

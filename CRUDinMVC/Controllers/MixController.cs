@@ -120,5 +120,45 @@ namespace CRUDinMVC.Controllers
            
             return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
             
-    }}
+        }
+        // POST: SearchForm
+        [HttpPost]
+        public ActionResult Search(MixSearchFilter filter)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _mixRepository.Search(filter);                    
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Search Error!";
+                return View();
+            }
+        }
+        // POST: Pellet/Create
+        [HttpPost]
+        public ActionResult AddPellet(Pellet pellet)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _mixRepository.AddPellet(pellet);
+                    TempData["Message"] = "Pellet added successfully!";
+                    return RedirectToAction("MixWithPellet");
+                }
+                return View();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Error! Pellet not added!";
+                return View();
+            }
+        }
+    }
 }

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using CathRepoCommon.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Configuration;
-using CathRepoCommon.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace CathRepoCommon.Models
 {
@@ -24,9 +24,6 @@ namespace CathRepoCommon.Models
             #else
             var url = MongoUrl.Create(ConfigurationManager.AppSettings.Get("(MONGOHQ_URL|MONGOLAB_URI)"));
             #endif
-
-
-
 
             _client = new MongoClient(url);
             _database = _client.GetDatabase("mixes");
@@ -52,14 +49,40 @@ namespace CathRepoCommon.Models
 
         public IEnumerable<Mix> GetMixes()
         {
-            //List<FilterDefinition<Mix>> filters = new List<FilterDefinition<Mix>>();
-            //var builder = Builders<Mix>.Filter;
-            //filters.Add(builder.Lte(key, valueB));
-            //filters.Add(builder.Gte("MixName", string.Empty));
-            //var filter = builder.And(filters);
-            //var mixes = _collection.Find(filter).Limit(10).ToList();
+            var mixes = _collection.Find(FilterDefinition<Mix>.Empty).Limit(20).ToList();
+            return mixes;
+        }
 
-            var mixes = _collection.Find(FilterDefinition<Mix>.Empty).Limit(10).ToList();
+        public IEnumerable<Mix> GetMixes(MixSearchFilter _filter)
+        {
+            List<FilterDefinition<Mix>> filters = new List<FilterDefinition<Mix>>();
+            var builder = Builders<Mix>.Filter;
+
+            if (_filter.MixName != string.Empty)
+                filters.Add(builder.Eq("MixName", _filter.MixName));
+            if (_filter.RatioHigh != null)
+                filters.Add(builder.Lte("CFx", _filter.CFxHigh));
+            if (_filter.RatioLow != null)
+                filters.Add(builder.Gte("CFx", _filter.CFxLow));
+            if (_filter.RatioHigh != null)
+                filters.Add(builder.Lte("SVO", _filter.SVOHigh));
+            if (_filter.RatioLow != null)
+                filters.Add(builder.Gte("SVO", _filter.SVOLow));
+            if (_filter.RatioHigh != null)
+                filters.Add(builder.Lte("Carbon", _filter.CarbonHigh));
+            if (_filter.RatioLow != null)
+                filters.Add(builder.Gte("Carbon", _filter.CarbonLow));
+            if (_filter.RatioHigh != null)
+                filters.Add(builder.Lte("Binder", _filter.BinderHigh));
+            if (_filter.RatioLow != null)
+                filters.Add(builder.Gte("Binder", _filter.BinderLow));
+            if (_filter.RatioHigh != null)
+                filters.Add(builder.Lte("Ratio", _filter.RatioHigh));
+            if (_filter.RatioLow != null)
+                filters.Add(builder.Gte("Ratio", _filter.RatioLow));
+
+            var filterList = builder.And(filters);
+            var mixes = _collection.Find(filterList).Limit(10).ToList();
             return mixes;
         }
 
@@ -69,6 +92,14 @@ namespace CathRepoCommon.Models
             _collection.ReplaceOne(filter, mix);
         }
 
-        
+        public void Search(MixSearchFilter filter)
+        {
+            throw new NotImplementedException();
+        }
+        public void AddPellet(Pellet pellet)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
