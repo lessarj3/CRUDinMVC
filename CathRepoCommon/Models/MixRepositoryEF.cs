@@ -62,7 +62,7 @@ namespace CathRepoCommon.Models
             }
         }
 
-        public void Search(MixSearchFilter filter)
+        public IEnumerable<Mix> GetMixes(MixSearchFilter filter)
         {
             throw new NotImplementedException();
         }

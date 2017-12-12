@@ -1,16 +1,25 @@
 ﻿@model CathRepoCommon.Models.MixSearchFilter
 
+@if (ViewData["Message"] != null && ViewData["Message"].ToString().Contains("Error"))
+{
+    <p class="alert alert-danger alert-dismissable" id="Message">
+        <strong>@ViewData["Message"]</strong>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </p>
+}
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <h3>Mix Search</h3>
-
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+        <div class="form-group">
+            @Html.LabelFor(model => model.MixName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MixName, new { htmlAttributes = new { @class = "form-control", } })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CFxHigh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

@@ -58,23 +58,23 @@ namespace CathRepoCommon.Models
             List<FilterDefinition<Mix>> filters = new List<FilterDefinition<Mix>>();
             var builder = Builders<Mix>.Filter;
 
-            if (_filter.MixName != string.Empty)
-                filters.Add(builder.Eq("MixName", _filter.MixName));
-            if (_filter.RatioHigh != null)
+            if (_filter.MixName != null)
+                filters.Add(builder.Regex("MixName", new BsonRegularExpression(".*" + _filter.MixName + ".*")));
+            if (_filter.CFxHigh != null)
                 filters.Add(builder.Lte("CFx", _filter.CFxHigh));
-            if (_filter.RatioLow != null)
+            if (_filter.CFxLow != null)
                 filters.Add(builder.Gte("CFx", _filter.CFxLow));
-            if (_filter.RatioHigh != null)
+            if (_filter.SVOHigh != null)
                 filters.Add(builder.Lte("SVO", _filter.SVOHigh));
-            if (_filter.RatioLow != null)
+            if (_filter.SVOLow != null)
                 filters.Add(builder.Gte("SVO", _filter.SVOLow));
-            if (_filter.RatioHigh != null)
+            if (_filter.CarbonHigh != null)
                 filters.Add(builder.Lte("Carbon", _filter.CarbonHigh));
-            if (_filter.RatioLow != null)
+            if (_filter.CarbonLow != null)
                 filters.Add(builder.Gte("Carbon", _filter.CarbonLow));
-            if (_filter.RatioHigh != null)
+            if (_filter.BinderHigh != null)
                 filters.Add(builder.Lte("Binder", _filter.BinderHigh));
-            if (_filter.RatioLow != null)
+            if (_filter.BinderLow != null)
                 filters.Add(builder.Gte("Binder", _filter.BinderLow));
             if (_filter.RatioHigh != null)
                 filters.Add(builder.Lte("Ratio", _filter.RatioHigh));
@@ -92,10 +92,6 @@ namespace CathRepoCommon.Models
             _collection.ReplaceOne(filter, mix);
         }
 
-        public void Search(MixSearchFilter filter)
-        {
-            throw new NotImplementedException();
-        }
         public void AddPellet(Pellet pellet)
         {
             throw new NotImplementedException();

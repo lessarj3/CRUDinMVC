@@ -29,10 +29,13 @@ namespace CRUDinMVC.Controllers
         }
         //*************RETRIEVE ALL MIXES******************
         // GET
-        public ActionResult Index()
+        public ActionResult Index(IEnumerable<Mix> mixes)
         {
             ModelState.Clear();
-            return View(_mixRepository.GetMixes());
+            if (mixes != null)
+                return View(mixes);
+            else
+                return View(_mixRepository.GetMixes());
         }
 
         // 2. *************ADD NEW MIX ******************
@@ -115,29 +118,30 @@ namespace CRUDinMVC.Controllers
         }
         //Display Mix and Pellet Data
         public ActionResult MixWithPellets(string id)
-        {
-           
-           
-            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
-            
+        {     
+            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));    
         }
+
+        // GET
+        public ActionResult Search()
+        {
+            ModelState.Clear();
+            return View("SearchForm");
+        }
+
         // POST: SearchForm
         [HttpPost]
         public ActionResult Search(MixSearchFilter filter)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    _mixRepository.Search(filter);                    
-                    return RedirectToAction("Index");
-                }
-                return View();
+                var mixes = _mixRepository.GetMixes(filter);
+                return View("Index", mixes);
             }
             catch (Exception)
             {
-                TempData["Message"] = "Search Error!";
-                return View();
+                ViewData["Message"] = "Search Error!";
+                return View("SearchForm");
             }
         }
         // POST: Pellet/Create
