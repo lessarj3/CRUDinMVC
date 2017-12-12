@@ -3,12 +3,10 @@
 
 <table class ="table">
     <tr>
-        <th>@Html.DisplayNameFor(model => model.Mass)</th>
-        <th>@Html.DisplayNameFor(model => model.Diameter)</th>
-        <th>@Html.DisplayNameFor(model => model.Thickness)</th>
-        <th>@Html.DisplayNameFor(model => model.Resistance)</th>
-        
-
+        <th class="col3">Mass(g)</th>
+        <th>Diameter(mm)</th>
+        <th>Thickness(mm)</th>
+        <th>Resistance(ohms)</th>
     </tr>
     
     @foreach (var item in Model)
@@ -21,3 +19,17 @@
         </tr>
     }
 </table>
+
+<style>
+    <style>
+    .col1 {
+        width: 30%;
+    }
+    .col2 {
+        width: 10%;
+    }
+    .col3 {
+        width: 25%;
+    }
+</style>
+</style>

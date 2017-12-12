@@ -1,10 +1,10 @@
-﻿using System;
+﻿//using CRUDinMVC.Models;
+using CathRepoCommon.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//using CRUDinMVC.Models;
-using CathRepoCommon.Models;
 
 namespace CRUDinMVC.Controllers
 {
@@ -27,12 +27,15 @@ namespace CRUDinMVC.Controllers
             //Gets IMixRepository implementation from factory
             _mixRepository = MixRepositoryFactory.Get();
         }
-        //*************RETRIEVE ALL MIXES******************
-        // GET
-        public ActionResult Index()
+         //*************RETRIEVE ALL MIXES******************
+          // GET
+         public ActionResult Index(IEnumerable<Mix> mixes)
         {
-            ModelState.Clear();
-            return View(_mixRepository.GetMixes());
+            ModelState.Clear();           
+            if (mixes != null)
+                return View(mixes);
+            else
+                return View(_mixRepository.GetMixes());
         }
 
         // 2. *************ADD NEW MIX ******************
@@ -113,31 +116,32 @@ namespace CRUDinMVC.Controllers
                 return View();
             }
         }
-        //Display Mix and Pellet Data
+       //************* DISPLAY MIX AND PELLET DATA*************
         public ActionResult MixWithPellets(string id)
-        {
-           
-           
-            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));
-            
+        {     
+            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));    
         }
+ 
+        // GET
+        public ActionResult Search()
+        {
+            ModelState.Clear();
+            return View("SearchForm");
+        }
+
         // POST: SearchForm
         [HttpPost]
         public ActionResult Search(MixSearchFilter filter)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    _mixRepository.Search(filter);                    
-                    return RedirectToAction("Index");
-                }
-                return View();
+                 var mixes = _mixRepository.GetMixes(filter);
+                 return View("Index", mixes);
             }
             catch (Exception)
             {
-                TempData["Message"] = "Search Error!";
-                return View();
+                ViewData["Message"] = "Search Error!";
+                return View("SearchForm");
             }
         }
         // POST: Pellet/Create
