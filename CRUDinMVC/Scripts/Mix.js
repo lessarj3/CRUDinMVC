@@ -1,4 +1,3 @@
-var TeamDetailPostBackURL = '/Mix/EditPellets';
 $(function () {
     $(".anchorDetail").click(function () {
         debugger;

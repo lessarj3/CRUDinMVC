@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Http;
 
 namespace CRUDinMVC
 {
@@ -12,6 +13,7 @@ namespace CRUDinMVC
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            //GlobalConfiguration.Configure(WebApiConfig.Configure);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
