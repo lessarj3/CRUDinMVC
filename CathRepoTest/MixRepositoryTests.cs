@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CathRepoCommon.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace CathRepoTest
 {
@@ -48,6 +49,21 @@ namespace CathRepoTest
             mix.Pellets.Add(pellet3);
 
             repo.AddMix(mix);
+        }
+
+        
+
+        [TestMethod]
+        public void TestAddingPellets()
+        {
+            repo = MixRepositoryFactory.Get();
+            var pellet1 = new Pellet(1.500, 16.015, 2.350, 25);
+            var pellet2 = new Pellet(2.500, 16.015, 2.350, 25);
+            List<Pellet> pellets = new List<Pellet>();
+            pellets.Add(pellet1);
+            pellets.Add(pellet2);
+
+            repo.UpdatePellets("2b833202-0c6b-4fde-aa09-4abbb3275a40", pellets);
         }
 
         //In memory 6 mix set up

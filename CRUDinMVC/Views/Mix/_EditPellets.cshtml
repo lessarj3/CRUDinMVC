@@ -24,7 +24,7 @@
             <td>@Html.EditorFor(modelItem => item.Diameter)</td>
             <td>@Html.EditorFor(modelItem => item.Thickness)</td>
             <td>@Html.EditorFor(modelItem => item.Resistance)</td>
-            <td><a href="javascript:deletePellet();" class="anchorDetail" data-id="@i">Delete</a></td>
+            <td><a href="javascript:deletePellet(@i);" class="anchorDetail">Delete</a></td>
         </tr>
         i += 1;
     }

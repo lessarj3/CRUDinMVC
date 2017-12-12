@@ -19,11 +19,11 @@ namespace CathRepoCommon.Models
 
         public MixRepositoryMongo()
         {
-            #if DEBUG
+#if DEBUG
             var url = MongoUrl.Create(ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString);
-            #else
+#else
             var url = MongoUrl.Create(ConfigurationManager.AppSettings.Get("(MONGOHQ_URL|MONGOLAB_URI)"));
-            #endif
+#endif
 
             _client = new MongoClient(url);
             _database = _client.GetDatabase("mixes");
@@ -92,10 +92,11 @@ namespace CathRepoCommon.Models
             _collection.ReplaceOne(filter, mix);
         }
 
-        public void AddPellet(Pellet pellet)
+        public void UpdatePellets(string mixId, IEnumerable<Pellet> pellets)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Mix>.Filter.Eq("_id", mixId);
+            var update = Builders<Mix>.Update.Set("Pellets", pellets);
+            _collection.UpdateOne(filter, update);
         }
-
     }
 }

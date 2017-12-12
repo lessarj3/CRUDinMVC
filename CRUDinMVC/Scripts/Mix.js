@@ -37,6 +37,6 @@ function deletePellet(id) {
 
 function addPellet() {
     var id = $('#Pellets tr:last').attr('id');
-    $('#Pellets').append('<tr id="' + id + '">New Row</tr>');
+    $('#Pellets').append('<tr>New Row</tr>');
 }
 
