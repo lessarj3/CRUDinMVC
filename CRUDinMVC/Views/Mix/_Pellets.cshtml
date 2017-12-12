@@ -3,10 +3,10 @@
 
 <table class ="table">
     <tr>
-        <th class="col3">Mass(g)</th>
-        <th>Diameter(mm)</th>
-        <th>Thickness(mm)</th>
-        <th>Resistance(ohms)</th>
+        <th class="col4">Mass(g)</th>
+        <th class="col4">Diameter(mm)</th>
+        <th class="col4">Thickness(mm)</th>
+        <th class="col4">Resistance(ohms)</th>
     </tr>
     
     @foreach (var item in Model)
@@ -21,15 +21,19 @@
 </table>
 
 <style>
-    <style>
     .col1 {
         width: 30%;
     }
+
     .col2 {
         width: 10%;
     }
+
     .col3 {
         width: 25%;
     }
-</style>
+
+    .col4 {
+        width: 15%;
+    }
 </style>

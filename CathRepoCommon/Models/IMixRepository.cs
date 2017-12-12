@@ -10,6 +10,6 @@ namespace CathRepoCommon.Models
         IEnumerable<Mix> GetMixes();
         void UpdateDetails(Mix mix);
         IEnumerable<Mix> GetMixes(MixSearchFilter filter);
-        void AddPellet(Pellet pellet);
+       
     }
 }

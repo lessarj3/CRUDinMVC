@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 //using CRUDinMVC.Models;
 using CathRepoCommon.Models;
+using CRUDinMVC.ViewModels;
+
 
 namespace CRUDinMVC.Controllers
 {
@@ -118,8 +120,45 @@ namespace CRUDinMVC.Controllers
         }
         //Display Mix and Pellet Data
         public ActionResult MixWithPellets(string id)
-        {     
-            return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));    
+        {
+            var mix = _mixRepository.GetMixes().FirstOrDefault(m => m.Id == id);
+            var vm = new MixViewModel();
+            vm.MixName = mix.MixName;
+            vm.Pellets = mix.Pellets;
+            vm.CFx = mix.CFx;
+            vm.SVO = mix.SVO;
+            vm.Carbon = mix.Carbon;
+            vm.Binder = mix.Binder;
+            vm.Ratio = mix.Ratio;
+            vm.ActiveMaterial = mix.ActiveMaterial;
+            vm.mAh = mix.mAh;
+
+            //(p => p.Mass) Lambda expression, means for each pellet, select the mass
+            double pelletMassAverage = mix.Pellets != null && mix.Pellets.Count() > 0 ? mix.Pellets.Average(p => p.Mass):0;                     
+            double pelletDiameterAverage = mix.Pellets != null && mix.Pellets.Count() > 0 ? mix.Pellets.Average(p => p.Diameter) : 0;
+            double pelletThicknessAverage = mix.Pellets != null && mix.Pellets.Count() > 0 ? mix.Pellets.Average(p => p.Thickness) : 0;
+            double pelletResistanceAverage = mix.Pellets != null && mix.Pellets.Count() > 0 ? mix.Pellets.Average(p => p.Resistance) : 0;
+            double pelletVolumeAverage = Math.Round(Math.PI * (((Math.Pow((pelletDiameterAverage/2), 2)/100) * (pelletThicknessAverage)/10)), 3);
+            double pelletDensityAverage = Math.Round((pelletMassAverage / pelletVolumeAverage),3);
+            //Setting averages the viewModel (vm)
+            vm.PelletDensityAverage = pelletDensityAverage;
+            vm.PelletVolumeAverage = pelletVolumeAverage;
+            vm.PelletMassAverage = pelletMassAverage;
+            vm.PelletThicknessAverage = pelletThicknessAverage;
+            vm.PelletDiameterAverage= pelletDiameterAverage;
+            vm.PelletResistnaceAverage= pelletResistanceAverage;
+            //other calculations
+
+
+            return View(vm);    
+        }
+
+
+
+        public ActionResult EditPellets(string Id)
+        {
+            Mix mix = _mixRepository.GetMixes().FirstOrDefault(m => m.Id == Id);
+            return PartialView("_EditPellets", mix.Pellets);
         }
 
         // GET
@@ -144,16 +183,17 @@ namespace CRUDinMVC.Controllers
                 return View("SearchForm");
             }
         }
+
         // POST: Pellet/Create
         [HttpPost]
-        public ActionResult AddPellet(Pellet pellet)
+        public ActionResult EditPellets(string mixId, IEnumerable<Pellet> pellets)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _mixRepository.AddPellet(pellet);
-                    TempData["Message"] = "Pellet added successfully!";
+                    //_mixRepository.UpdatePellets(string mixId, pellets);
+                    TempData["Message"] = "Pellets added successfully!";
                     return RedirectToAction("MixWithPellet");
                 }
                 return View();

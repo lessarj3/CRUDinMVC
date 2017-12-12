@@ -1,0 +1,46 @@
+﻿@*@using CathRepoCommon.Models*@
+@model IEnumerable<CathRepoCommon.Models.Pellet>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+    <h4 class="modal-title" id="myModalLabel">Edit Pellets</h4>
+</div>
+
+<table id="Pellets" class ="table">
+    <tr>
+        <th class="col4">Mass(g)</th>
+        <th class="col4">Diameter(mm)</th>
+        <th class="col4">Thickness(mm)</th>
+        <th class="col4">Resistance(ohms)</th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        var i = 1;
+        <tr id=i>
+            <td>@Html.EditorFor(modelItem => item.Mass)</td>
+            <td>@Html.EditorFor(modelItem => item.Diameter)</td>
+            <td>@Html.EditorFor(modelItem => item.Thickness)</td>
+            <td>@Html.EditorFor(modelItem => item.Resistance)</td>
+        </tr>
+        i += 1;
+    }
+</table>
+
+<style>
+    .col1 {
+        width: 30%;
+    }
+
+    .col2 {
+        width: 10%;
+    }
+
+    .col3 {
+        width: 25%;
+    }
+
+    .col4 {
+        width: 15%;
+    }
+</style>

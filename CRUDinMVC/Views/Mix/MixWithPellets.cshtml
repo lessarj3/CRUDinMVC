@@ -1,6 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @using CathRepoCommon.Models
-@model Mix
+@using CRUDinMVC.ViewModels
+@model MixViewModel
 
 <div>
     <h3>Cathode Mix Recipes</h3>
@@ -36,18 +37,22 @@
     <h3>Pellet Data Averages</h3>
     <table class="table">
         <tr>
-            <th class="col3">Mass(g) Average</th>
-            <th class="col3">Diameter(mm) Average</th>
-            <th class="col3">Thickness(mm) Average</th>
-            <th class="col3">Resistance(ohms) Average</th>
+            <th class="col4">Density (g/cc) Average</th>
+            <th class="col4">Volume(cc) Average</th>
+            <th class="col2">Mass(g) Average</th>
+            <th class="col2">Diameter(mm) Average</th>
+            <th class="col2">Thickness(mm) Average</th>
+            <th class="col2">Resistance(ohms) Average</th>
         </tr>
 
 
         <tr>
-            <td>Place Holder</td>
-            <td>Place Holder</td>
-            <td>Place Holder</td>
-            <td>Place Holder</td>
+            <td>@Html.DisplayFor(model => model.PelletDensityAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletVolumeAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletMassAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletDiameterAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletThicknessAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletResistnaceAverage)</td>
         </tr>
 
     </table>
@@ -83,5 +88,8 @@
     }
     .col3 {
         width: 25%;
+    }
+    .col4 {
+        width: 15%;
     }
 </style>
