@@ -1,10 +1,10 @@
-﻿//using CRUDinMVC.Models;
-using CathRepoCommon.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+//using CRUDinMVC.Models;
+using CathRepoCommon.Models;
 
 namespace CRUDinMVC.Controllers
 {
@@ -27,11 +27,11 @@ namespace CRUDinMVC.Controllers
             //Gets IMixRepository implementation from factory
             _mixRepository = MixRepositoryFactory.Get();
         }
-         //*************RETRIEVE ALL MIXES******************
-          // GET
-         public ActionResult Index(IEnumerable<Mix> mixes)
+        //*************RETRIEVE ALL MIXES******************
+        // GET
+        public ActionResult Index(IEnumerable<Mix> mixes)
         {
-            ModelState.Clear();           
+            ModelState.Clear();
             if (mixes != null)
                 return View(mixes);
             else
@@ -116,12 +116,12 @@ namespace CRUDinMVC.Controllers
                 return View();
             }
         }
-       //************* DISPLAY MIX AND PELLET DATA*************
+        //Display Mix and Pellet Data
         public ActionResult MixWithPellets(string id)
         {     
             return View(_mixRepository.GetMixes().FirstOrDefault(m => m.Id == id));    
         }
- 
+
         // GET
         public ActionResult Search()
         {
@@ -135,8 +135,8 @@ namespace CRUDinMVC.Controllers
         {
             try
             {
-                 var mixes = _mixRepository.GetMixes(filter);
-                 return View("Index", mixes);
+                var mixes = _mixRepository.GetMixes(filter);
+                return View("Index", mixes);
             }
             catch (Exception)
             {
