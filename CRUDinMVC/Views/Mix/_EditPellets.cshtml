@@ -6,41 +6,26 @@
     <h4 class="modal-title" id="myModalLabel">Edit Pellets</h4>
 </div>
 
+<button id="AddPellet" onclick="addPellet()">Add Pellet</button>
+
 <table id="Pellets" class ="table">
     <tr>
-        <th class="col4">Mass(g)</th>
-        <th class="col4">Diameter(mm)</th>
-        <th class="col4">Thickness(mm)</th>
-        <th class="col4">Resistance(ohms)</th>
+        <th>Mass(g)</th>
+        <th>Diameter(mm)</th>
+        <th>Thickness(mm)</th>
+        <th>Resistance(ohms)</th>
     </tr>
     
     @foreach (var item in Model)
     {
         var i = 1;
-        <tr id=i>
+        <tr id=@i>
             <td>@Html.EditorFor(modelItem => item.Mass)</td>
             <td>@Html.EditorFor(modelItem => item.Diameter)</td>
             <td>@Html.EditorFor(modelItem => item.Thickness)</td>
             <td>@Html.EditorFor(modelItem => item.Resistance)</td>
+            <td><a href="javascript:deletePellet();" class="anchorDetail" data-id="@i">Delete</a></td>
         </tr>
         i += 1;
     }
 </table>
-
-<style>
-    .col1 {
-        width: 30%;
-    }
-
-    .col2 {
-        width: 10%;
-    }
-
-    .col3 {
-        width: 25%;
-    }
-
-    .col4 {
-        width: 15%;
-    }
-</style>

@@ -28,3 +28,15 @@ $(function () {
         $('#myModal').modal('hide');
     });
 });
+
+function deletePellet(id) {
+    $('#' + id).fadeOut(1000, function () {
+        $('#' + id).remove();
+    });
+}
+
+function addPellet() {
+    var id = $('#Pellets tr:last').attr('id');
+    $('#Pellets').append('<tr id="' + id + '">New Row</tr>');
+}
+
