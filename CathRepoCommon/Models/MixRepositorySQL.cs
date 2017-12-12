@@ -198,9 +198,9 @@ namespace CathRepoCommon.Models
         }
 
         // **************** Mix Search Filter *********************
-        public void Search(MixSearchFilter filter)
+        public IEnumerable<Mix> GetMixes(MixSearchFilter filter)
         {
-            //Add data
+            throw new NotImplementedException();
         }
 
     }

@@ -1,17 +1,3 @@
-﻿$("#form1").submit(function () {
-    var jqxhr = $.post('/api/mixes/', $('#form1').serialize())
-        .success(function () {
-            var loc = jqxhr.getResponseHeader('Location');
-            var a = $('<a/>', { href: loc, text: loc });
-            $('#message').html(a);
-        })
-        .error(function () {
-            $('#message').html("Error posting the update.");
-        });
-    return false;
-});
-
-var TeamDetailPostBackURL = '/Mix/Details';
 $(function () {
     $(".anchorDetail").click(function () {
         debugger;

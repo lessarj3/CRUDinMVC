@@ -23,20 +23,17 @@
     </p>
 }
 
-@*@Html.ActionLink("Search Form","Search")*@
-
 @Html.ActionLink("Create New", "Create")
 <table class="table">
     <tr>
-        <th>Mix Name</th>
-        <th>Active %</th>
+        <th>@Html.DisplayNameFor(model => model.MixName)</th>
+        <th>@Html.DisplayNameFor(model => model.ActiveMaterial)</th>
         <th>@Html.DisplayNameFor(model => model.Ratio)</th>
         <th>@Html.DisplayNameFor(model => model.mAh)</th>
         <th>@Html.DisplayNameFor(model => model.CFx)</th>
         <th>@Html.DisplayNameFor(model => model.SVO)</th>
         <th>@Html.DisplayNameFor(model => model.Carbon)</th>
-        <th>@Html.DisplayNameFor(model => model.Binder)</th>
-        <th>@Html.DisplayNameFor(model => model.Pellets)</th>        
+        <th>@Html.DisplayNameFor(model => model.Binder)</th>        
 
        
     </tr>
@@ -52,30 +49,16 @@
         <td>@Html.DisplayFor(modelItem => item.SVO)</td>
         <td>@Html.DisplayFor(modelItem => item.Carbon)</td>
         <td>@Html.DisplayFor(modelItem => item.Binder)</td>
-        <td>@Html.DisplayFor(modelItem => item.Pellets.Count)</td>
 
-
-        <td>
-            <a href="javascript:void(0);" class="anchorDetail" data-id="@item.Id">Pellets</a> |
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        <td>@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "MixWithPellets", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            
-
         </td>
     </tr>
 }
 
 </table>
-<div id='myModal' class='modal'>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/Mix.js"></script>

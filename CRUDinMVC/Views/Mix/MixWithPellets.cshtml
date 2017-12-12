@@ -1,38 +1,61 @@
 ﻿@using System.Web.Mvc.Html
 @using CathRepoCommon.Models
-@model Mix
+@using CRUDinMVC.ViewModels
+@model MixViewModel
 
 <div>
-    <h3>Mix Recipe</h3>
-    
-    <table class="table">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.MixName)</th>
-        
-        <th>@Html.DisplayNameFor(model => model.CFx)</th>
-        
-        <th>@Html.DisplayNameFor(model => model.SVO)</th>
-        
-        <th>@Html.DisplayNameFor(model => model.Carbon)</th>
-        
-        <th>@Html.DisplayNameFor(model => model.Binder)</th>
-        
-        <th>@Html.DisplayNameFor(model => model.Ratio)</th>        
-    </tr>
-    <tr>      
-        <td>@Html.DisplayFor(model => model.MixName)</td>        
-        
-        <td>@Html.DisplayFor(model => model.CFx)</td>        
-        
-        <td>@Html.DisplayFor(model => model.SVO)</td>
-        
-        <td>@Html.DisplayFor(model => model.Carbon)</td>       
-        
-        <td>@Html.DisplayFor(model => model.Binder)</td>        
+    <h3>Cathode Mix Recipes</h3>
 
-        <td>@Html.DisplayFor(model => model.Ratio)</td> 
-    </tr> 
-    </table>  
+    <table class="table">
+        <tr>
+            <th class="col1">Cathode Mix Name</th>
+            <th class="col2">Active %</th>
+            <th class="col2">Ratio</th>
+            <th class="col2">mAh</th>
+            <th class="col2">CFx %</th>
+            <th class="col2">SVO %</th>
+            <th class="col2">Carbon %</th>
+            <th class="col2">Binder %</th>
+
+
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.MixName)</td>
+            <td>@Html.DisplayFor(model => model.ActiveMaterial)</td>
+            <td>@Html.DisplayFor(model => model.Ratio)</td>
+            <td>@Html.DisplayFor(model => model.mAh)</td>
+            <td>@Html.DisplayFor(model => model.CFx)</td>
+            <td>@Html.DisplayFor(model => model.SVO)</td>
+            <td>@Html.DisplayFor(model => model.Carbon)</td>
+            <td>@Html.DisplayFor(model => model.Binder)</td>
+
+
+        </tr>
+    </table>
+</div>
+<div>
+    <h3>Pellet Data Averages</h3>
+    <table class="table">
+        <tr>
+            <th class="col4">Density (g/cc) Average</th>
+            <th class="col4">Volume(cc) Average</th>
+            <th class="col2">Mass(g) Average</th>
+            <th class="col2">Diameter(mm) Average</th>
+            <th class="col2">Thickness(mm) Average</th>
+            <th class="col2">Resistance(ohms) Average</th>
+        </tr>
+
+
+        <tr>
+            <td>@Html.DisplayFor(model => model.PelletDensityAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletVolumeAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletMassAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletDiameterAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletThicknessAverage)</td>
+            <td>@Html.DisplayFor(model => model.PelletResistnaceAverage)</td>
+        </tr>
+
+    </table>
 </div>
 
 
@@ -41,7 +64,7 @@
         ViewBag.Title = "PelletData";
         //var pellet = new Pellet(1, 2, 3, 4);
     }
-    <h3>PelletData</h3>
+    <h3>Pellet Data</h3>
     @Html.Partial("_Pellets", Model.Pellets)
 
 
@@ -55,3 +78,18 @@
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/~/bundles/jquery")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/~/bundles/jqueryval")" type="text/javascript"></script>
+
+<style>
+    .col1 {
+        width: 30%;
+    }
+    .col2 {
+        width: 10%;
+    }
+    .col3 {
+        width: 25%;
+    }
+    .col4 {
+        width: 15%;
+    }
+</style>
