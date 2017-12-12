@@ -173,8 +173,8 @@
     <Content Include="Views\Mix\Edit.cshtml" />
     <Content Include="Views\Mix\MixWithPellets.cshtml" />
     <Content Include="Views\Mix\_Pellets.cshtml" />
-    <Content Include="Views\Mix\SearchForm.cshtml" />
     <Content Include="Views\Mix\_EditPellets.cshtml" />
+    <Content Include="Views\Mix\SearchForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
