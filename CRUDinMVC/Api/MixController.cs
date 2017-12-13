@@ -46,8 +46,9 @@ namespace CRUDinMVC.Api
         }
 
         // POST: api/Mix/EditPellets/{id}
+        [Route("api/Mix/{id}")]
         [HttpPut]
-        public HttpResponseMessage EditPellets(string Id, [System.Web.Http.FromBody]IEnumerable<Pellet> pellets)
+        public HttpResponseMessage Put(string Id, [FromBody]IEnumerable<Pellet> pellets)
         {
             try
             {
