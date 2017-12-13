@@ -183,26 +183,5 @@ namespace CRUDinMVC.Controllers
                 return View("SearchForm");
             }
         }
-
-        // POST: Pellet/Create
-        [HttpPost]
-        public ActionResult EditPellets(string Id, [System.Web.Http.FromBody]IEnumerable<Pellet> pellets)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    _mixRepository.UpdatePellets(Id, pellets);
-                    TempData["Message"] = "Pellets updated successfully!";
-                    return RedirectToAction("MixWithPellet");
-                }
-                return View();
-            }
-            catch (Exception)
-            {
-                TempData["Message"] = "Error! Pellets not updated!";
-                return View();
-            }
-        }
     }
 }
