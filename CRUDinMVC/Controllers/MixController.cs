@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-//using CRUDinMVC.Models;
 using CathRepoCommon.Models;
 using CRUDinMVC.ViewModels;
 
@@ -186,7 +184,7 @@ namespace CRUDinMVC.Controllers
 
         // POST: Pellet/Create
         [HttpPost]
-        public ActionResult EditPellets(string mixId, IEnumerable<Pellet> pellets)
+        public ActionResult EditPellets(string mixId, [System.Web.Http.FromBody]IEnumerable<Pellet> pellets)
         {
             try
             {
