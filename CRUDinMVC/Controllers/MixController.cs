@@ -156,7 +156,9 @@ namespace CRUDinMVC.Controllers
         public ActionResult EditPellets(string Id)
         {
             Mix mix = _mixRepository.GetMixes().FirstOrDefault(m => m.Id == Id);
-            return PartialView("_EditPellets", mix.Pellets);
+            var view = PartialView("_EditPellets", mix.Pellets);
+            view.ViewBag.MixId = Id;
+            return view;
         }
 
         // GET
@@ -184,21 +186,21 @@ namespace CRUDinMVC.Controllers
 
         // POST: Pellet/Create
         [HttpPost]
-        public ActionResult EditPellets(string mixId, [System.Web.Http.FromBody]IEnumerable<Pellet> pellets)
+        public ActionResult EditPellets(string Id, [System.Web.Http.FromBody]IEnumerable<Pellet> pellets)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    //_mixRepository.UpdatePellets(string mixId, pellets);
-                    TempData["Message"] = "Pellets added successfully!";
+                    _mixRepository.UpdatePellets(Id, pellets);
+                    TempData["Message"] = "Pellets updated successfully!";
                     return RedirectToAction("MixWithPellet");
                 }
                 return View();
             }
             catch (Exception)
             {
-                TempData["Message"] = "Error! Pellet not added!";
+                TempData["Message"] = "Error! Pellets not updated!";
                 return View();
             }
         }

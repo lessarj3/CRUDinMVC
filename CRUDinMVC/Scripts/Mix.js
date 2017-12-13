@@ -48,3 +48,20 @@ function addPellet() {
     var idCheck = table.children('tbody').children('tr').last().attr('id')
 }
 
+function updatePellets() {
+    //var json = JSON.stringify(objectifyForm($form.serializeArray()));
+    var mixId = $('#mixId').val();
+    var URL = '/Mix/EditPellets/' + mixId;
+    var json = '[{ "Mass": 1.5, "Diameter": 16.015, "Thickness": 2.35, "Resistance": 25.0, "VolumetricCapacity": 0.0, "Density": 0.0 }, { "Mass": 2.5, "Diameter": 16.015, "Thickness": 2.35, "Resistance": 25.0, "VolumetricCapacity": 0.0, "Density": 0.0 }]'
+    $.ajax({
+        url: URL,
+        type: 'post',
+        data: json,
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: function () {
+            $('#myModal').modal('hide');
+        },
+    });
+}
+
