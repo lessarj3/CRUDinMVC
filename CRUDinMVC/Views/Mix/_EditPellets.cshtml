@@ -1,31 +1,35 @@
 ﻿@*@using CathRepoCommon.Models*@
 @model IEnumerable<CathRepoCommon.Models.Pellet>
 
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
-    <h4 class="modal-title" id="myModalLabel">Edit Pellets</h4>
-</div>
+<div class="modal-body">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+        <h4 class="modal-title" id="myModalLabel">Edit Pellets</h4>
+    </div>
 
-<button id="AddPellet" onclick="addPellet()">Add Pellet</button>
+    <button id="AddPellet" onclick="addPellet()">Add Pellet</button>
 
-<table id="Pellets" class ="table">
-    <tr>
-        <th>Mass(g)</th>
-        <th>Diameter(mm)</th>
-        <th>Thickness(mm)</th>
-        <th>Resistance(ohms)</th>
-    </tr>
-    
-    @foreach (var item in Model)
-    {
-        var i = 1;
-        <tr id=@i>
-            <td>@Html.EditorFor(modelItem => item.Mass)</td>
-            <td>@Html.EditorFor(modelItem => item.Diameter)</td>
-            <td>@Html.EditorFor(modelItem => item.Thickness)</td>
-            <td>@Html.EditorFor(modelItem => item.Resistance)</td>
-            <td><a href="javascript:deletePellet(@i);" class="anchorDetail">Delete</a></td>
+    <table id="Pellets">
+        <tr>
+            <th>Mass(g)</th>
+            <th>Diameter(mm)</th>
+            <th>Thickness(mm)</th>
+            <th>Resistance(ohms)</th>
         </tr>
-        i += 1;
-    }
-</table>
+
+        @{var i = 1;}
+        @foreach (var item in Model)
+        {
+            <tr id=@i>
+                <td>@Html.EditorFor(modelItem => item.Mass)</td>
+                <td>@Html.EditorFor(modelItem => item.Diameter)</td>
+                <td>@Html.EditorFor(modelItem => item.Thickness)</td>
+                <td>@Html.EditorFor(modelItem => item.Resistance)</td>
+                <td><a href="javascript:deletePellet(@i);" class="anchorDetail">Delete</a></td>
+            </tr>
+            i += 1;
+        }
+    </table>
+
+    <button id="Save" onclick="updatePellets()">Save</button>
+</div>

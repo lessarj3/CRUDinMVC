@@ -1,13 +1,12 @@
-var TeamDetailPostBackURL = '/Mix/EditPellets';
 $(function () {
     $(".anchorDetail").click(function () {
-        debugger;
+        var URL = '/Mix/EditPellets';
         var $buttonClicked = $(this);
         var id = $buttonClicked.attr('data-id');
         var options = { "backdrop": "static", keyboard: true };
         $.ajax({
             type: "GET",
-            url: TeamDetailPostBackURL,
+            url: URL,
             contentType: "application/json; charset=utf-8",
             data: { "Id": id },
             datatype: "json",
@@ -36,7 +35,16 @@ function deletePellet(id) {
 }
 
 function addPellet() {
-    var id = $('#Pellets tr:last').attr('id');
-    $('#Pellets').append('<tr>New Row</tr>');
+    var table = $('#Pellets');
+    var id = table.children('tbody').children('tr').last().attr('id') + 1.0;
+    var row = '<tr id=' + id + '>' +
+        '<td><input class="text-box single-line" data-val="true" data-val-number="The field Mass must be a number." data-val-required="The Mass field is required." id="item_Mass" name="item.Mass" type="text"</td>' +
+        '<td><input class="text-box single-line" data-val="true" data-val-number="The field Mass must be a number." data-val-required="The Mass field is required." id="item_Mass" name="item.Mass" type="text"</td>' +
+        '<td><input class="text-box single-line" data-val="true" data-val-number="The field Mass must be a number." data-val-required="The Mass field is required." id="item_Mass" name="item.Mass" type="text"</td>' +
+        '<td><input class="text-box single-line" data-val="true" data-val-number="The field Mass must be a number." data-val-required="The Mass field is required." id="item_Mass" name="item.Mass" type="text"</td>' +
+        '<td><a href="javascript:deletePellet(' + id + ');" class="anchorDetail">Delete</a></td>' +
+        '</tr>';
+    table.children('tbody').children('tr').last().after(row);
+    var idCheck = table.children('tbody').children('tr').last().attr('id')
 }
 
