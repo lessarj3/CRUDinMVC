@@ -31,6 +31,21 @@ function EditPelletsViewModel() {
 
     self.addPellet = function () { self.pellets.push(new pellet()) };
     self.removePellet = function (pellet) { self.pellets.remove(pellet) };
+
+    self.save = function () {
+        var mixId = $('#mixId').val();
+        var URL = 'api/mixes/' + mixId + '/pellets/';
+        var json = ko.toJSON(self.pellets);
+        $.ajax({
+            url: URL,
+            type: 'PUT',
+            data: json,
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                $('#myModal').modal('hide');
+            },
+        });
+    };
 };
 
 $(document).ready(function () {
