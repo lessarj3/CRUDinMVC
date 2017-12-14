@@ -178,7 +178,7 @@
     <Content Include="Views\Mix\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\MixController.cs" />
+    <Compile Include="Api\MixesController.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MixController.cs" />

@@ -45,23 +45,36 @@ function addPellet() {
         '<td><a href="javascript:deletePellet(' + id + ');" class="anchorDetail">Delete</a></td>' +
         '</tr>';
     table.children('tbody').children('tr').last().after(row);
-    var idCheck = table.children('tbody').children('tr').last().attr('id')
 }
 
 function updatePellets() {
     //var json = JSON.stringify(objectifyForm($form.serializeArray()));
     var mixId = $('#mixId').val();
-    var URL = 'api/Mix/EditPellets/' + mixId;
-    var json = '[{ "Mass": 1.5, "Diameter": 16.015, "Thickness": 2.35, "Resistance": 25.0, "VolumetricCapacity": 0.0, "Density": 0.0 }, { "Mass": 2.5, "Diameter": 16.015, "Thickness": 2.35, "Resistance": 25.0, "VolumetricCapacity": 0.0, "Density": 0.0 }]'
+    var URL = 'api/mixes/' + mixId + '/editpellets/';
+    //var json = '[{ "Mass": 1.5, "Diameter": 16.015, "Thickness": 2.35, "Resistance": 25.0, "VolumetricCapacity": 0.0, "Density": 0.0 }, { "Mass": 2.5, "Diameter": 16.015, "Thickness": 2.35, "Resistance": 25.0, "VolumetricCapacity": 0.0, "Density": 0.0 }]'
+    var json = objectifyTable("Pellets")
     $.ajax({
         url: URL,
-        type: 'put',
+        type: 'PUT',
         data: json,
         contentType: "application/json; charset=utf-8",
-        dataType: 'json',
         success: function () {
             $('#myModal').modal('hide');
         },
-    });
+    }); 
+}
+
+function objectifyTable(tableName) {
+    var table = $('#Pellets');
+    var rows = table.children('tbody').children('tr');
+    for (var r = 1; r < rows.length; r++) {
+        var row = rows[r];
+        var values = row.cells;
+        for (var v = 0; v < values.length; v++) {
+            var value = values[v];
+        }
+    }
+    var returnArray = {};
+    return returnArray;
 }
 
