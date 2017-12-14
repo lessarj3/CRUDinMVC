@@ -50,7 +50,7 @@ function addPellet() {
 function updatePellets() {
     //var json = JSON.stringify(objectifyForm($form.serializeArray()));
     var mixId = $('#mixId').val();
-    var URL = 'api/mixes/' + mixId + '/editpellets/';
+    var URL = 'api/mixes/' + mixId + '/pellets/';
     //var json = '[{ "Mass": 1.5, "Diameter": 16.015, "Thickness": 2.35, "Resistance": 25.0, "VolumetricCapacity": 0.0, "Density": 0.0 }, { "Mass": 2.5, "Diameter": 16.015, "Thickness": 2.35, "Resistance": 25.0, "VolumetricCapacity": 0.0, "Density": 0.0 }]'
     var json = objectifyTable("Pellets")
     $.ajax({

@@ -19,6 +19,7 @@ namespace CRUDinMVC.Api
 
         // GET api/mixes
         [HttpGet]
+        [Route("api/mixes")]
         public IEnumerable<Mix> Get()
         {
             return _mixRepository.GetMixes();
@@ -26,6 +27,7 @@ namespace CRUDinMVC.Api
 
         // GET api/mixes/5
         [HttpGet]
+        [Route("api/mixes/{id}")]
         public Mix Get(string id)
         {
             return _mixRepository.GetMixes().Where(m => m.Id == id).FirstOrDefault();
@@ -33,6 +35,7 @@ namespace CRUDinMVC.Api
 
         // POST api/mixes
         [HttpPost]
+        [Route("api/mixes")]
         public HttpResponseMessage Post([FromBody]Mix mix)
         {
             try
@@ -45,6 +48,14 @@ namespace CRUDinMVC.Api
             }
 
             return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
+        // GET api/mixes/5/pellets
+        [HttpGet]
+        [Route("api/mixes/{id}/pellets")]
+        public IEnumerable<Pellet> GetPellets(string id)
+        {
+            return _mixRepository.GetMixes().Where(m => m.Id == id).FirstOrDefault().Pellets;
         }
 
         [HttpPut]
@@ -64,8 +75,8 @@ namespace CRUDinMVC.Api
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // POST: api/mixes/{id}/editpellets
-        [Route("api/mixes/{id}/editpellets")]
+        // PUT: api/mixes/{id}/pellets
+        [Route("api/mixes/{id}/pellets")]
         [HttpPut]
         public HttpResponseMessage Put(string Id, [FromBody]IEnumerable<Pellet> pellets)
         {

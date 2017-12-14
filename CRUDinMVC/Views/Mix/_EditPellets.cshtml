@@ -1,5 +1,9 @@
-﻿@*@using CathRepoCommon.Models*@
-@model IEnumerable<CathRepoCommon.Models.Pellet>
+﻿@*@section viewmodelScripts {
+    var EditPelletsViewModel = require('ViewModels/EditPelletsViewModel');
+    viewModel = new EditPelletsViewModel();
+}*@
+
+<script src="~/Scripts/ViewModels/EditPelletsViewModel.js"></script>
 
 <div class="modal-body">
     <div class="modal-header">
@@ -7,29 +11,27 @@
         <h4 class="modal-title" id="myModalLabel">Edit Pellets</h4>
     </div>
     <input type="hidden" id="mixId" value="@ViewBag.MixId" />
-    <button id="AddPellet" onclick="addPellet()">Add Pellet</button>
-
-    <table id="Pellets">
-        <tr>
-            <th>Mass(g)</th>
-            <th>Diameter(mm)</th>
-            <th>Thickness(mm)</th>
-            <th>Resistance(ohms)</th>
-        </tr>
-
-        @{var i = 1;}
-        @foreach (var item in Model)
-        {
-            <tr id=@i>
-                <td>@Html.EditorFor(modelItem => item.Mass)</td>
-                <td>@Html.EditorFor(modelItem => item.Diameter)</td>
-                <td>@Html.EditorFor(modelItem => item.Thickness)</td>
-                <td>@Html.EditorFor(modelItem => item.Resistance)</td>
-                <td><a href="javascript:deletePellet(@i);" class="anchorDetail">Delete</a></td>
+    <table width='100%'>
+        <thead>
+            <tr>
+                <th width='25%'>Mass(g)</th>
+                <th width='25%'>Diameter(mm)</th>
+                <th width='25%'>Thickness(mm)</th>
+                <th width='25%'>Resistance(ohms)</th>
             </tr>
-            i += 1;
-        }
+        </thead>
+        <tbody data-bind='foreach: pellets'>
+            <tr>
+                <td><input data-bind='value: mass, valueUpdate: "afterkeydown"' /></td>
+                <td><input data-bind='value: diameter, valueUpdate: "afterkeydown"' /></td>
+                <td><input data-bind='value: thickness, valueUpdate: "afterkeydown"' /></td>
+                <td><input data-bind='value: resistance, valueUpdate: "afterkeydown"' /></td>
+                <td><a href='#' data-bind='click: $parent.removePellet'>Delete</a></td>
+            </tr>
+        </tbody>
     </table>
 
-    <button id="Save" onclick="updatePellets()">Save</button>
+    <button data-bind='click: addPellet'>Add Pellet</button>
+    <button>Save</button>
 </div>
+
