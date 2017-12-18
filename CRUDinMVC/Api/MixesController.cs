@@ -55,7 +55,8 @@ namespace CRUDinMVC.Api
         [Route("api/mixes/{id}/pellets")]
         public IEnumerable<Pellet> GetPellets(string id)
         {
-            return _mixRepository.GetMixes().Where(m => m.Id == id).FirstOrDefault().Pellets;
+            var pellets = _mixRepository.GetMixes().Where(m => m.Id == id).FirstOrDefault().Pellets;
+            return pellets;
         }
 
         [HttpPut]

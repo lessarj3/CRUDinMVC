@@ -151,16 +151,6 @@ namespace CRUDinMVC.Controllers
             return View(vm);    
         }
 
-
-
-        public ActionResult EditPellets(string Id)
-        {
-            Mix mix = _mixRepository.GetMixes().FirstOrDefault(m => m.Id == Id);
-            var view = PartialView("_EditPellets", mix.Pellets);
-            view.ViewBag.MixId = Id;
-            return view;
-        }
-
         // GET
         public ActionResult Search()
         {

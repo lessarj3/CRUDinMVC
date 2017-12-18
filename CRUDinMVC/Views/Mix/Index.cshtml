@@ -56,7 +56,7 @@
 
 
         <td>
-            <a href="javascript:void(0);" class="anchorDetail" data-id="@item.Id">Pellets</a> |
+            <a class="anchorDetail" data-id="@item.Id">Pellets</a> |
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "MixWithPellets", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
@@ -66,22 +66,57 @@
 }
 
 </table>
-<div id='myModal' class='modal'>
+@*<div id='myModal' class='modal'>
     <div class="modal-dialog">
         <div class="modal-content" style="width:1000px; margin: 10px auto">
             <div id='myModalContent'>
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
-<script src="~/Scripts/knockout-3.4.2.js"></script>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/Scripts/Mix.js"></script>
-<script type="text/javascript">
-    $(document).ready(function ()    {
-        $(".alert-success").delay(3000).fadeOut(400);
-    });
-</script>
+<div id="pelletModal" class="modal fade" data-reveal aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:1000px; margin: 10px auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title" id="myModalLabel">Edit Pellets</h4>
+            </div>
+            <input type="hidden" id="mixId" value="" />
+            <table width='100%'>
+                <thead>
+                    <tr>
+                        <th width='25%'>Mass(g)</th>
+                        <th width='25%'>Diameter(mm)</th>
+                        <th width='25%'>Thickness(mm)</th>
+                        <th width='25%'>Resistance(ohms)</th>
+                    </tr>
+                </thead>
+                <tbody id="pelletTable" data-bind='foreach: pellets'>
+                    <tr>
+                        <td><input data-bind='value: mass, valueUpdate: "afterkeydown"' /></td>
+                        <td><input data-bind='value: diameter, valueUpdate: "afterkeydown"' /></td>
+                        <td><input data-bind='value: thickness, valueUpdate: "afterkeydown"' /></td>
+                        <td><input data-bind='value: resistance, valueUpdate: "afterkeydown"' /></td>
+                        <td><a href='#' data-bind='click: $parent.removePellet'>Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button data-bind='click: addPellet'>Add Pellet</button>
+            <button data-bind='click: save'>Save</button>
+        </div>
+    </div>
+</div>
+        <script src="~/Scripts/knockout-3.4.2.js"></script>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/Scripts/Mix.js"></script>
+        <script src="~/Scripts/ViewModels/EditPelletsViewModel.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".alert-success").delay(3000).fadeOut(400);
+            });
+        </script>
+

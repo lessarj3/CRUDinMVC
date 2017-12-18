@@ -3,6 +3,7 @@
 function EditPelletsViewModel() {
 
     var self = this;
+    self.mixId = ko.observable();
     self.pellets = ko.observableArray();
 
     var pellet = function (mass, diameter, thickness, resistance) {
@@ -15,7 +16,7 @@ function EditPelletsViewModel() {
 
     self.getPellets = function () {
         self.pellets.removeAll();
-        var mixId = $('#mixId').val();
+        var mixId = self.mixId();
         var URL = 'api/mixes/' + mixId + '/pellets/';
         $.ajax({
             url: URL,
@@ -33,7 +34,7 @@ function EditPelletsViewModel() {
     self.removePellet = function (pellet) { self.pellets.remove(pellet) };
 
     self.save = function () {
-        var mixId = $('#mixId').val();
+        var mixId = self.mixId();
         var URL = 'api/mixes/' + mixId + '/pellets/';
         var json = ko.toJSON(self.pellets);
         $.ajax({
@@ -42,7 +43,8 @@ function EditPelletsViewModel() {
             data: json,
             contentType: "application/json; charset=utf-8",
             success: function () {
-                $('#myModal').modal('hide');
+                $('#pelletModal').modal('hide');
+                location.reload();
             },
         });
     };
@@ -54,7 +56,4 @@ $(document).ready(function () {
 
     // bind viewmodel to view
     ko.applyBindings(viewModel);
-
-    // load pellets
-    viewModel.getPellets();
 });

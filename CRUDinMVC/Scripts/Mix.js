@@ -1,31 +1,41 @@
-$(function () {
-    $(".anchorDetail").click(function () {
-        var URL = '/Mix/EditPellets';
-        var $buttonClicked = $(this);
-        var id = $buttonClicked.attr('data-id');
-        var options = { "backdrop": "static", keyboard: true };
-        $.ajax({
-            type: "GET",
-            url: URL,
-            contentType: "application/json; charset=utf-8",
-            data: { "Id": id },
-            datatype: "json",
-            success: function (data) {
-                debugger;
-                $('#myModalContent').html(data);
-                $('#myModal').modal(options);
-                $('#myModal').modal('show');
+//$(function () {
+//    $(".anchorDetail").click(function () {
+//        var URL = '/Mix/EditPellets';
+//        var $buttonClicked = $(this);
+//        var id = $buttonClicked.attr('data-id');
+//        var options = { "backdrop": "static", keyboard: true };
+//        $.ajax({
+//            type: "GET",
+//            url: URL,
+//            contentType: "application/json; charset=utf-8",
+//            data: { "Id": id },
+//            datatype: "json",
+//            success: function (data) {
+//                debugger;
+//                $('#myModalContent').html(data);
+//                $('#myModal').modal(options);
+//                $('#myModal').modal('show');
 
-            },
-            error: function () {
-                alert("Dynamic content load failed.");
-            }
-        });
-    });
+//            },
+//            error: function () {
+//                alert("Dynamic content load failed.");
+//            }
+//        });
+//    });
 
-    $("#closbtn").click(function () {
-        $('#myModal').modal('hide');
-    });
+//    $("#closbtn").click(function () {
+//        $('#myModal').modal('hide');
+//    });
+//});
+
+$(".anchorDetail").click(function () {
+    var $buttonClicked = $(this);
+    var id = $buttonClicked.attr('data-id');
+    viewModel.mixId(id);
+    viewModel.getPellets();
+    var options = { "backdrop": "static", keyboard: true };
+    $('#pelletModal').modal(options);
+    $('#pelletModal').modal('show');
 });
 
 function deletePellet(id) {
@@ -59,7 +69,7 @@ function updatePellets() {
         data: json,
         contentType: "application/json; charset=utf-8",
         success: function () {
-            $('#myModal').modal('hide');
+            $('#pelletModal').modal('hide');
         },
     }); 
 }

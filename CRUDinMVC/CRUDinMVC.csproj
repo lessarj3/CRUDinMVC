@@ -175,7 +175,7 @@
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\Mix.js" />
     <Content Include="Scripts\ViewModels\EditPelletsViewModel.js" />
-    <Content Include="Scripts\ViewModels\MixViewModels.js" />
+    <Content Include="Scripts\ViewModels\MixViewModel.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Mix\Create.cshtml" />
