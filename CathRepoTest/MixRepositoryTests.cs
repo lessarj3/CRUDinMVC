@@ -11,7 +11,7 @@ namespace CathRepoTest
     {
         private IMixRepository  repo;
         //In memory only test
-        [TestMethod]
+        //[TestMethod]
         public void TestGettingMixes()
         {
             SetUpRepo();
@@ -22,7 +22,7 @@ namespace CathRepoTest
         }
 
         //In memory only test
-        [TestMethod]
+        //[TestMethod]
         public void TestAddingNewMix()
         {
             SetUpRepo();
@@ -33,7 +33,7 @@ namespace CathRepoTest
         }
 
         //General test
-        [TestMethod]
+        //[TestMethod]
         public void TestAddingMixWithPellets()
         {
             repo = MixRepositoryFactory.Get();
@@ -53,7 +53,7 @@ namespace CathRepoTest
 
         
 
-        [TestMethod]
+        //[TestMethod]
         public void TestAddingPellets()
         {
             repo = MixRepositoryFactory.Get();
