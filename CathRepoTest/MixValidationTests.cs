@@ -21,7 +21,6 @@ namespace CathRepoTest
             Assert.AreEqual(results[0].ErrorMessage, "Mix Name too long");
         }
 
-
         private List<ValidationResult> ValidateModel<T>(T model)
         {
             var context = new ValidationContext(model, null, null);

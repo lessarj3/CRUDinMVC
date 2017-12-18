@@ -13,7 +13,7 @@ namespace CRUDinMVC
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            //GlobalConfiguration.Configure(WebApiConfig.Configure);
+            GlobalConfiguration.Configure(WebApiConfig.Configure);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }

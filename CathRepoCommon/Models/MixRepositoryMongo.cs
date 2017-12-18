@@ -1,4 +1,4 @@
-﻿using CathRepoCommon.Models;
+using CathRepoCommon.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -19,16 +19,14 @@ namespace CathRepoCommon.Models
 
         public MixRepositoryMongo()
         {
-            var databaseName = "mixes";
-            #if DEBUG
+#if DEBUG
             var url = MongoUrl.Create(ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString);
-            #else
-            var url = MongoUrl.Create(ConfigurationManager.AppSettings.Get("MONGOLAB_URI"));
-            databaseName = url.DatabaseName;
-            #endif
+#else
+            var url = MongoUrl.Create(ConfigurationManager.AppSettings.Get("(MONGOHQ_URL|MONGOLAB_URI)"));
+#endif
 
-            _client = new MongoClient(url);           
-            _database = _client.GetDatabase(databaseName);
+            _client = new MongoClient(url);
+            _database = _client.GetDatabase("mixes");
             _collection = _database.GetCollection<Mix>("Mix");
         }
 
@@ -94,10 +92,11 @@ namespace CathRepoCommon.Models
             _collection.ReplaceOne(filter, mix);
         }
 
-        public void AddPellet(Pellet pellet)
+        public void UpdatePellets(string mixId, IEnumerable<Pellet> pellets)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Mix>.Filter.Eq("_id", mixId);
+            var update = Builders<Mix>.Update.Set("Pellets", pellets);
+            _collection.UpdateOne(filter, update);
         }
-
     }
 }

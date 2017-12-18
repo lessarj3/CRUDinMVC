@@ -66,5 +66,10 @@ namespace CathRepoCommon.Models
         {
             throw new NotImplementedException();
         }
+
+        public void UpdatePellets(string mixId, IEnumerable<Pellet> pellets)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

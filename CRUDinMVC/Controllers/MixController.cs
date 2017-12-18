@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-//using CRUDinMVC.Models;
 using CathRepoCommon.Models;
 using CRUDinMVC.ViewModels;
 
@@ -153,14 +151,6 @@ namespace CRUDinMVC.Controllers
             return View(vm);    
         }
 
-
-
-        public ActionResult EditPellets(string Id)
-        {
-            Mix mix = _mixRepository.GetMixes().FirstOrDefault(m => m.Id == Id);
-            return PartialView("_EditPellets", mix.Pellets);
-        }
-
         // GET
         public ActionResult Search()
         {
@@ -181,27 +171,6 @@ namespace CRUDinMVC.Controllers
             {
                 ViewData["Message"] = "Search Error!";
                 return View("SearchForm");
-            }
-        }
-
-        // POST: Pellet/Create
-        [HttpPost]
-        public ActionResult EditPellets(string mixId, IEnumerable<Pellet> pellets)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    //_mixRepository.UpdatePellets(string mixId, pellets);
-                    TempData["Message"] = "Pellets added successfully!";
-                    return RedirectToAction("MixWithPellet");
-                }
-                return View();
-            }
-            catch (Exception)
-            {
-                TempData["Message"] = "Error! Pellet not added!";
-                return View();
             }
         }
     }
