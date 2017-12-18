@@ -14,13 +14,12 @@ namespace CathRepoTest
         public void TestMixNameTooLong()
         {
             var mix = new Mix();
-            mix.MixName = "Mix8aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            mix.MixName = "Mix8aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             mix.Ratio = 1;
             var results = ValidateModel(mix);
             Assert.AreEqual(1, results.Count());
             Assert.AreEqual(results[0].ErrorMessage, "Mix Name too long");
         }
-
 
         private List<ValidationResult> ValidateModel<T>(T model)
         {
